@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<!-- 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>ACFEE181-8540-4F16-A215-BE95C20A1AD4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>binoculars</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2AC9CAE3AA0AEF6C0FB2791ED2125031E0CF0415</key>
+		<string>bitbucket.org:zelox991/binoculars.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>binoculars.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2AC9CAE3AA0AEF6C0FB2791ED2125031E0CF0415</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>bitbucket.org:zelox991/binoculars.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2AC9CAE3AA0AEF6C0FB2791ED2125031E0CF0415</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2AC9CAE3AA0AEF6C0FB2791ED2125031E0CF0415</string>
+			<key>IDESourceControlWCCName</key>
+			<string>binoculars</string>
+		</dict>
+	</array> -->
+</dict>
+</plist>

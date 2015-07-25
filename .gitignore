@@ -1,0 +1,20 @@
+# xcode
+build/*
+*.pbxuser
+*.mode2v3
+*.mode1v3
+xcuserdata
+
+# OSX
+.DS_Store
+profile
+*~
+*.DS_Store
+*.swp
+*.out
+
+# IntelliJ
+.idea
+
+*.pyc
+propninja/scripts/indexer/indexes
