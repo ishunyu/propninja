@@ -20,10 +20,10 @@ def field_booster(fieldname, factor=2.0):
    return booster_fn
 
 def PropertiesTokenizedKeyAnalyzer():
-  return RegexTokenizer(r"[_\.]+", True) | LowercaseFilter()
+  return RegexTokenizer(r"[_\-\.]+", True) | LowercaseFilter()
 
 def SearchPhraseAnalyzer():
-  return RegexTokenizer(r"[_\. ]+", True) | LowercaseFilter()
+  return RegexTokenizer(r"[_\-\. ]+", True) | LowercaseFilter()
 
 class PropertyIndexer(object):
   def __init__(self, docs):
