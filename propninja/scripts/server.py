@@ -108,7 +108,7 @@ class RequestHandler(SocketServer.BaseRequestHandler):
 
 
 class ThreadedTCPServer(SocketServer.ThreadingTCPServer):
-  def __init__(self, RequestHandlerClass, port):
+  def __init__(self, RequestHandlerClass, port, lockFile):
     self._create_watcher()
 
     self.port = port
@@ -116,6 +116,8 @@ class ThreadedTCPServer(SocketServer.ThreadingTCPServer):
     SocketServer.TCPServer.__init__(self, addr, RequestHandlerClass)
 
     print "Started..." + str(port)
+
+    open(lockFile, 'w').close()
 
   def _create_watcher(self):
     t = threading.Thread(target=watch, args=(self,))
@@ -154,7 +156,8 @@ class ThreadedTCPServer(SocketServer.ThreadingTCPServer):
 
 def main(args):
   port = int(args[1])
-  ThreadedTCPServer(RequestHandler, port).serve_forever()
+  lockFile = args[2]
+  ThreadedTCPServer(RequestHandler, port, lockFile).serve_forever()
 
 if __name__ == '__main__':
   main(sys.argv)

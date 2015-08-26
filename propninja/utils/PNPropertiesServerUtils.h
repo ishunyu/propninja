@@ -11,7 +11,9 @@
 #import "PNProperty.h"
 
 @interface PNPropertiesServerUtils : NSObject
-+ (NSArray *)arguments:(int)port;
++ (NSString *)pathForLock;
+
++ (NSArray *)arguments:(int)port lockFile:(NSString *)lockFile;
 + (NSString *)pathForServer;
 
 + (NSData *)requestForIndex:(NSArray *)configuration;
