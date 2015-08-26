@@ -19,6 +19,7 @@
 
 @interface PNPropertiesServer ()
 @property (nonatomic, readwrite) int port;
+@property (strong, nonatomic) NSString *lockFile;
 @property (strong, nonatomic) NSTask *task;
 @end
 
@@ -27,6 +28,9 @@
 - (void)preStart
 {
     self.port = [PNStreamUtils findOpenPort];
+    self.lockFile = [PNPropertiesServerUtils pathForLock];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:self.lockFile error:nil];
 }
 
 - (void)doStart
@@ -34,16 +38,24 @@
     self.task = [[NSTask alloc] init];
     
     self.task.launchPath = [PNPropertiesServerUtils pathForServer];
-    self.task.arguments = [PNPropertiesServerUtils arguments:self.port];
+    self.task.arguments = [PNPropertiesServerUtils arguments:self.port lockFile:self.lockFile];
     
     [self.task launch];
 }
 
 - (BOOL)ready
 {
-    [NSThread sleepForTimeInterval:0.5f];
-    
     int tries = 25;
+    while (tries-- > 0) {
+        
+        if (![[NSFileManager defaultManager] fileExistsAtPath:self.lockFile])
+        {
+            [NSThread sleepForTimeInterval:0.1f];
+            continue;
+        }
+    }
+    
+    tries = 25;
     while (tries-- > 0) {
         PNStreamConnection *connection = [self createConnection];
         NSError *error = nil;

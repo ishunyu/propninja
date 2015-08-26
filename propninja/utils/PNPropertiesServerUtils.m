@@ -6,12 +6,22 @@
 //  Copyright (c) 2015 Workday. All rights reserved.
 //
 
+#import "PNLoggerUtils.h"
+
 #import "PNConstants.h"
 #import "NSString+Utilities.h"
 #import "PNSerializationUtils.h"
 #import "PNPropertiesServerUtils.h"
 
 @implementation PNPropertiesServerUtils
+
+#pragma mark lock
++ (NSString *)pathForLock
+{
+    return [NSString pathWithComponents:@[[[NSBundle mainBundle] resourcePath],
+                                          DIR_SCRIPTS,
+                                          [NSString stringWithFormat:@"%@.%@", FILE_PROPERTIES_SERVER, FILE_TYPE_LOCK]]];
+}
 
 #pragma mark Exec
 + (NSString *)pathForServer
@@ -21,9 +31,9 @@
                                       inDirectory:DIR_SCRIPTS];
 }
 
-+ (NSArray *)arguments:(int)port
++ (NSArray *)arguments:(int)port lockFile:(NSString *)lockFile
 {
-    return @[[@(port) stringValue]];
+    return @[[@(port) stringValue], lockFile];
 }
 
 #pragma mark Requests
