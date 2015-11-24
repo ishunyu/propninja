@@ -190,6 +190,14 @@ class Properties(object):
   def __str__(self):
     return "\n".join([str(entry) for entry in self])
 
+  def __len__(self):
+    length = 0
+    for entry in self:
+      if entry.data:
+        length = length + 1
+
+    return length
+
   def keys(self):
     keys = []
     for p in self:

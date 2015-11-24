@@ -31,12 +31,19 @@ def write(obj, fname):
 
 def test(input_path, output_path):
 	generator = JavaPropertiesFileGenerator()
-	input_file = generator.generate(numOfProperties = NUM_PROPERTIES)
-	write(input_file, input_path)
+	result = generator.generate(numOfProperties = NUM_PROPERTIES)
+	write(result["file"], input_path)
 
 	props = open_props(input_path)
 	write(props, output_path)
 
 	assert is_same(input_path, output_path)
+
+	obj = result["obj"]
+
+	assert len(props) == len(obj)
+
+	for k, v in obj.items():
+		assert v.strip() == props[k.strip()]
 
 test(TEST_INPUT_FILE, TEST_OUTPUT_FILE)
