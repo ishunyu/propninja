@@ -14,7 +14,10 @@ class JavaPropertiesFileGenerator:
 		self.assertParameters(numOfProperties)
 
 		properties = self.doGenerate(numOfProperties)
-		return self.write(properties)
+		return {
+			"obj": properties,
+			"file": self.write(properties)
+		}
 
 	def assertParameters(self, numOfProperties):
 		if numOfProperties < 0:
