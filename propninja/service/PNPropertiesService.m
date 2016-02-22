@@ -99,6 +99,7 @@
         return nil;
     
     NSDictionary *response_object = [PNSerializationUtils deserialize:response_data];
+    NSLog(@"%@", response_object);
     return [self constructPropertiesFromSearchResult:response_object[@"value"]];
 }
 

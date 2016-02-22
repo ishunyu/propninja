@@ -1,49 +1,58 @@
 #!/usr/bin/env python
-from os import path as ospath
+
+"""
+Tests correctness of the properties injested by Properties class
+    - Use properties generator to randomly generate properties (then write to file)
+    - Use Properties class to read the properties
+    - Compare the read values with the generator source
+"""
+
+import os
 import random
 import filecmp
 
 from properties import Properties
-from test_generator import JavaPropertiesFileGenerator
 
-TEST_RESOURCE_FOLDER = ospath.join("resource", "test")
-TEST_INPUT_FILE = ospath.join(TEST_RESOURCE_FOLDER, "a.in.properties")
-TEST_OUTPUT_FILE = ospath.join(TEST_RESOURCE_FOLDER, "a.out.properties")
+from test_constants import *
+from test_properties import TestProperties
 
-NUM_MIN_PROPERTIES = 10
-NUM_MAX_PROPERTIES = 200
-NUM_PROPERTIES = random.randint(NUM_MIN_PROPERTIES, NUM_MAX_PROPERTIES)
+print "TEST_TMP_FOLDER: " + TEST_TMP_FOLDER
 
-print "TEST_RESOURCE_FOLDER: " + TEST_RESOURCE_FOLDER
-print "TEST_INPUT_FILE: " + TEST_INPUT_FILE
-print "TEST_OUTPUT_FILE: " + TEST_OUTPUT_FILE
+class PropertiesTest:
+    def __init__(self, testFileName="test.properties", minNumOfProps=10, maxNumOfProps=200):
+        self.testFilePath = os.path.join(TEST_TMP_FOLDER, testFileName)
+        self.numOfProps = random.randint(minNumOfProps, maxNumOfProps)
+
+        if not os.path.exists(TEST_TMP_FOLDER):
+            os.makedirs(TEST_TMP_FOLDER)
+            pass
+
+        if os.path.exists(self.testFilePath):
+            os.remove(self.testFilePath)
+            pass
+
+    def run(self):
+        testProps = TestProperties(self.numOfProps)
+        for x in testProps:
+            print x
+
+        self._write(testProps)
+        props = self._read()
+
+    def _write(self, obj):
+        with open(self.testFilePath, "w") as f:
+            f.write(str(obj))
+
+    def _read(self):
+        with open(self.testFilePath, "r") as f:
+            return Properties(f)
+
+    def _validate(self, testProps, props):
+        assert len(testProps) == len(props)
+
 
 def is_same(file_a, file_b):
-	return filecmp.cmp(file_a, file_b, shallow=False)
-
-def open_props(fname):
-  with open(fname, "r") as f:
-    return Properties(f)
-
-def write(obj, fname):
-	with open(fname, "w") as f:
-  		f.write(str(obj))
-
-def test(input_path, output_path):
-	generator = JavaPropertiesFileGenerator()
-	result = generator.generate(numOfProperties = NUM_PROPERTIES)
-	write(result["file"], input_path)
-
-	props = open_props(input_path)
-	write(props, output_path)
-
-	assert is_same(input_path, output_path)
-
-	obj = result["obj"]
-
-	assert len(props) == len(obj)
-
-	for k, v in obj.items():
-		assert v.strip() == props[k.strip()]
-
-test(TEST_INPUT_FILE, TEST_OUTPUT_FILE)
+    return filecmp.cmp(file_a, file_b, shallow=False)
+    
+if __name__ == '__main__':
+    PropertiesTest().run()
