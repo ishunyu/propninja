@@ -81,7 +81,7 @@ class PropertyIndexer(object):
       query3 = Prefix("key", s)
       query = Or([query3, query1, query2])
 
-      results = searcher.search(query)
+      results = searcher.search(query, limit = 50)
 
       ret = []
       for hit in results:
