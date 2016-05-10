@@ -43,6 +43,8 @@
     NSDictionary *request = @{ @"type"  : @"index",
                                @"value" : configuration };
     
+    DDLogVerbose(@"requestForIndex: %@", request);
+    
     return [PNSerializationUtils serialize:request];
 }
 
@@ -50,6 +52,8 @@
 {
     NSDictionary *request = @{ @"type": @"search",
                                @"key" : search };
+    
+    DDLogVerbose(@"requestForSearch: %@", request);
     
     return [PNSerializationUtils serialize:request];
 }
@@ -61,6 +65,8 @@
                                @"key"  : property.key,
                                @"value": property.value };
     
+    DDLogVerbose(@"requestForSet: %@", request);
+    
     return [PNSerializationUtils serialize:request];
 }
 
@@ -68,12 +74,16 @@
 {
     NSDictionary *request = @{ @"type": @"status" };
     
+    DDLogVerbose(@"requestForStatus: %@", request);
+    
     return [PNSerializationUtils serialize:request];
 }
 
 + (NSData *)requestForStop
 {
     NSDictionary *request = @{ @"type": @"stop" };
+    
+    DDLogVerbose(@"requestForStop: %@", request);
     
     return [PNSerializationUtils serialize:request];
 }

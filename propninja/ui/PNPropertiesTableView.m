@@ -156,11 +156,10 @@
         return YES;
     }
     
-    if (commandSelector == @selector(cancelOperation:) || commandSelector == @selector(insertNewline:))
+    if (commandSelector == @selector(cancelOperation:))
     {
         [self selectRowIndexes:[NSIndexSet indexSetWithIndex:[self cellFromFirstResponder].index] byExtendingSelection:NO];
     }
-    
     
     DDLogDebug(@"doCommandBySelector %@", NSStringFromSelector(commandSelector));
     

@@ -512,7 +512,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BN;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Workday;
 				TargetAttributes = {
 					E09563BD1A3BA5E700DFC645 = {
@@ -704,6 +704,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -768,6 +769,7 @@
 				INFOPLIST_FILE = "propninja/propninja-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ishunyu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = propninja;
 				WRAPPER_EXTENSION = app;
 			};
@@ -784,6 +786,7 @@
 				INFOPLIST_FILE = "propninja/propninja-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ishunyu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = propninja;
 				WRAPPER_EXTENSION = app;
 			};
@@ -806,6 +809,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "propninja/propninjaTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.workday.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = propninjaTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/propninja.app/Contents/MacOS/propninja";
 				WRAPPER_EXTENSION = xctest;
@@ -824,6 +828,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "propninja/propninja-Prefix.pch";
 				INFOPLIST_FILE = "propninjaTests/propninjaTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.workday.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = propninjaTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/propninja.app/Contents/MacOS/propninja";
 				WRAPPER_EXTENSION = xctest;
