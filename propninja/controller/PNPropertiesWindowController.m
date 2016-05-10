@@ -226,10 +226,13 @@
             PNProperty *property = self.data[i];
             
             if ([property.filePath isEqualToString:oldProperty.filePath] && [property.key isEqualToString:oldProperty.key]) {
+                [self.window makeFirstResponder:self.tableView];
                 [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:i] byExtendingSelection:NO];
                 return;
             }
         }
+        
+        [self.window makeFirstResponder:self.searchBox];
     }
 }
 
