@@ -91,7 +91,7 @@
 #pragma mark - NSWindowDelegate
 - (void)windowDidResignKey:(NSNotification *)notification
 {
-    // [[NSApplication sharedApplication] hide:self];
+    [[NSApplication sharedApplication] hide:self];
 }
 
 - (void)windowWillClose:(NSNotification *)notification
