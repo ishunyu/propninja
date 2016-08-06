@@ -99,7 +99,7 @@ class Property(object):
     i = self._separator_index(self._merged())
 
     if i == -1:
-      raise Exception()
+      raise Exception(self._merged())
 
   def key(self):
     if self.data:
@@ -131,11 +131,24 @@ class Property(object):
 
     return None
 
+  # Min property has to have one character key and one separator
   def _separator_index(self, line):
-    i = line.find("=")
-    i = line.find(":") if i == -1 else i
+    seenKey = False
+    for i in range(len(line)):
+      x = line[i]
+      if x in ['=', ':']:
+        if seenKey:
+          return i
+        else:
+          raise Exception(line)
+      elif x in [' ', '\t']:
+        if seenKey:
+          return i
+        else:
+          continue
+      seenKey = True
 
-    return i
+    return -1
 
   def _clean(self, line):
     line = clean(line)
