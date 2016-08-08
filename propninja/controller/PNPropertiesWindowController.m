@@ -10,6 +10,7 @@
 
 #import "PNPropertyFileInfoConfig.h"
 #import "PNPropertiesService.h"
+#import "PNStandardInputOutputPropertiesService.h"
 
 #import "PNPropertiesTableCellView.h"
 #import "PNPropertiesTableRowView.h"
@@ -26,7 +27,7 @@
 @property (weak) IBOutlet NSScrollView *scrollView;
 @property (weak) IBOutlet PNPropertiesTableView *tableView;
 
-@property (strong, nonatomic) PNPropertiesService *service;
+@property (strong, nonatomic) PNStandardInputOutputPropertiesService *service;
 @property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) NSArray *views;
 
@@ -43,7 +44,7 @@
     if (self)
     {
         self.appDelegate = appDelegate;
-        self.service = [[PNPropertiesService alloc] init];
+        self.service = [[PNStandardInputOutputPropertiesService alloc] init];
     }
     
     return self;
@@ -69,7 +70,7 @@
                 
                 cellView.index = i;
                 cellView.keyLabel.stringValue = property.key;
-                cellView.fileLabel.stringValue = [self.service.configuration propertyFileInfoForPath:property.filePath].tag;
+                cellView.fileLabel.stringValue = [self.service.pFilesConfig pFileInfoForPath:property.filePath].label;
                 cellView.valueField.stringValue = property.value;
                 cellView.valueField.delegate = self.tableView;
                 

@@ -37,12 +37,12 @@
     return (NSArray *)object;
 }
 
-+ (NSArray *)propertyFileInfoArray
++ (NSArray *)pFileInfos
 {
     return [self getArrayForKey:KEY_CONFIG_PROPERTY_FILES];
 }
 
-+ (void)setPropertyFileInfoArray:(NSArray* )propertyFileInfoArray
++ (void)savePFileInfosToUserDefaults:(NSArray* )propertyFileInfoArray
 {
     [self setObject:propertyFileInfoArray forKey:KEY_CONFIG_PROPERTY_FILES];
 }

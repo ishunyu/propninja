@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #import "PNPropertyFileInfoConfig.h"
-#import "PNStreamConnection.h"
 #import "PNProperty.h"
 
 @interface PNPropertiesService : NSObject

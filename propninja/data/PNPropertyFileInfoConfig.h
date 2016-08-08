@@ -12,14 +12,13 @@
 
 @interface PNPropertyFileInfoConfig : NSObject
 - (long)count;
-- (NSArray *)paths;
-- (void)save;
+- (NSArray *)arrayOfPaths;
+- (void)saveToUserDefaults;
 
-- (void)addEmptyPropertyFileInfo;
+- (PNPropertyFileInfo *)pFileInfoForPath:(NSString *)path;
+- (PNPropertyFileInfo *)pFileInfoForIndex:(long)index;
 
-- (PNPropertyFileInfo *)propertyFileInfoForPath:(NSString *)path;
-
-- (PNPropertyFileInfo *)propertyFileInfoForIndex:(long)index;
-- (void)setPropertyFileInfo:(PNPropertyFileInfo *)fileInfo index:(long)index;
-- (void)removePropertyFileInfoForIndex:(long)index;
+- (void)addEmptyPFileInfo;
+- (void)setPFileInfo:(PNPropertyFileInfo *)fileInfo index:(long)index;
+- (void)removePFileInfoForIndex:(long)index;
 @end

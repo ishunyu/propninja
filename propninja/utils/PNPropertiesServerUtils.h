@@ -15,10 +15,21 @@
 
 + (NSArray *)arguments:(int)port lockFile:(NSString *)lockFile;
 + (NSString *)pathForServer;
++ (NSString *)pathForStandardInputOutputServer;
++ (NSString *)pathForLogFolder;
+
++ (BOOL)waitForServerReady:(NSFileHandle *)readFileHandle;
+
++ (NSDictionary *)dictForIndex:(NSArray *)config;
++ (NSDictionary *)dictForSearch:(NSString *)word;
++ (NSDictionary *)dictForSet:(PNProperty *)property;
++ (NSDictionary *)dictForStop;
 
 + (NSData *)requestForIndex:(NSArray *)configuration;
 + (NSData *)requestForSearch:(NSString *)search;
 + (NSData *)requestForSet:(PNProperty *)property;
 + (NSData *)requestForStatus;
 + (NSData *)requestForStop;
+
++ (NSArray *)constructPropertiesFromSearchResult:(NSArray *)results;
 @end

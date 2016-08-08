@@ -38,4 +38,11 @@
     
     return self;
 }
+
+- (NSString *)description
+{
+    return [@{@"filePath": self.filePath,
+              @"key": self.key,
+              @"value": self.value} description];
+}
 @end

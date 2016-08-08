@@ -13,4 +13,6 @@
 
 + (NSData *)read:(NSInputStream *)inputStream error:(NSError **)error;
 + (void)send:(NSOutputStream *)outputStream data:(NSData *)data error:(NSError **)error;
+
++ (NSData *)sendData:(nullable NSData *)data writeFileHandle:(nullable NSFileHandle *) writeFileHandle readFileHandle: (NSFileHandle *)readFileHandle;
 @end

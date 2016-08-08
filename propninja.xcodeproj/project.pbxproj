@@ -19,11 +19,13 @@
 		E04C675E1A588727006861F2 /* PNPropertiesServerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E04C675D1A588727006861F2 /* PNPropertiesServerUtils.m */; };
 		E04C67611A59E640006861F2 /* PNProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E04C67601A59E640006861F2 /* PNProperty.m */; };
 		E04C67641A5A6214006861F2 /* PNTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E04C67631A5A6214006861F2 /* PNTableHeaderCell.m */; };
+		E0516C8C1D6007DD006EBDCB /* PNApplicationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E0516C8B1D6007DD006EBDCB /* PNApplicationUtils.m */; };
 		E0567DBE1A7D55FD001AF187 /* PNLoggerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E0567DBD1A7D55FD001AF187 /* PNLoggerUtils.m */; };
 		E0567DC11A7D6E4E001AF187 /* PNPropertyFileInfoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E0567DC01A7D6E4E001AF187 /* PNPropertyFileInfoConfig.m */; };
 		E0567DC41A7D8FD2001AF187 /* PNPathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E0567DC31A7D8FD2001AF187 /* PNPathUtils.m */; };
 		E0567DC91A7DFC3B001AF187 /* PNPropertyFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E0567DC81A7DFC3B001AF187 /* PNPropertyFileInfo.m */; };
 		E0567DCC1A7E13C6001AF187 /* PNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0567DCB1A7E13C6001AF187 /* PNTableView.m */; };
+		E06049AC1D65453400F456C8 /* PNStandardInputOutputServer.m in Sources */ = {isa = PBXBuildFile; fileRef = E06049AB1D65453400F456C8 /* PNStandardInputOutputServer.m */; };
 		E06599C71A7C8BC000474710 /* PNNumericUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E06599C61A7C8BC000474710 /* PNNumericUtils.m */; };
 		E06599CB1A7C911200474710 /* PNPropertiesServer.m in Sources */ = {isa = PBXBuildFile; fileRef = E06599CA1A7C911200474710 /* PNPropertiesServer.m */; };
 		E06599CE1A7C93E600474710 /* PNPropertiesService.m in Sources */ = {isa = PBXBuildFile; fileRef = E06599CD1A7C93E600474710 /* PNPropertiesService.m */; };
@@ -41,6 +43,7 @@
 		E09563C91A3BA5E700DFC645 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E09563C71A3BA5E700DFC645 /* InfoPlist.strings */; };
 		E0A21E3C1A4B3EB2007A5D73 /* PNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A21E3B1A4B3EB2007A5D73 /* PNConstants.m */; };
 		E0A8C13F1A3D2A540036A675 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E039E6361A3BD27D002832C5 /* Carbon.framework */; };
+		E0AA7CEA1D56948700355C3E /* PNStandardInputOutputPropertiesService.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AA7CE91D56948700355C3E /* PNStandardInputOutputPropertiesService.m */; };
 		E0BBA7591A47BE6C001D3DE1 /* PNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BBA73C1A47BE6C001D3DE1 /* PNAppDelegate.m */; };
 		E0BBA75A1A47BE6C001D3DE1 /* PNApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BBA73E1A47BE6C001D3DE1 /* PNApplication.m */; };
 		E0BBA75B1A47BE6C001D3DE1 /* PNMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BBA7411A47BE6C001D3DE1 /* PNMenuController.m */; };
@@ -96,6 +99,8 @@
 		E04C67621A5A6214006861F2 /* PNTableHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNTableHeaderCell.h; sourceTree = "<group>"; };
 		E04C67631A5A6214006861F2 /* PNTableHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNTableHeaderCell.m; sourceTree = "<group>"; };
 		E04E30421AA24283006B2F55 /* libproperties.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libproperties.a; path = properties/build/Debug/libproperties.a; sourceTree = "<group>"; };
+		E0516C8A1D6007DD006EBDCB /* PNApplicationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNApplicationUtils.h; sourceTree = "<group>"; };
+		E0516C8B1D6007DD006EBDCB /* PNApplicationUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNApplicationUtils.m; sourceTree = "<group>"; };
 		E0567DBC1A7D55FD001AF187 /* PNLoggerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLoggerUtils.h; sourceTree = "<group>"; };
 		E0567DBD1A7D55FD001AF187 /* PNLoggerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLoggerUtils.m; sourceTree = "<group>"; };
 		E0567DBF1A7D6E4E001AF187 /* PNPropertyFileInfoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPropertyFileInfoConfig.h; sourceTree = "<group>"; };
@@ -106,6 +111,8 @@
 		E0567DC81A7DFC3B001AF187 /* PNPropertyFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPropertyFileInfo.m; sourceTree = "<group>"; };
 		E0567DCA1A7E13C6001AF187 /* PNTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNTableView.h; sourceTree = "<group>"; };
 		E0567DCB1A7E13C6001AF187 /* PNTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNTableView.m; sourceTree = "<group>"; };
+		E06049AA1D65453400F456C8 /* PNStandardInputOutputServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNStandardInputOutputServer.h; path = service/PNStandardInputOutputServer.h; sourceTree = "<group>"; };
+		E06049AB1D65453400F456C8 /* PNStandardInputOutputServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNStandardInputOutputServer.m; path = service/PNStandardInputOutputServer.m; sourceTree = "<group>"; };
 		E06599C51A7C8BC000474710 /* PNNumericUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNNumericUtils.h; sourceTree = "<group>"; };
 		E06599C61A7C8BC000474710 /* PNNumericUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNNumericUtils.m; sourceTree = "<group>"; };
 		E06599C91A7C911200474710 /* PNPropertiesServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNPropertiesServer.h; path = service/PNPropertiesServer.h; sourceTree = "<group>"; };
@@ -134,6 +141,8 @@
 		E09563C81A3BA5E700DFC645 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E0A21E3A1A4B3EB2007A5D73 /* PNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNConstants.h; path = constants/PNConstants.h; sourceTree = "<group>"; };
 		E0A21E3B1A4B3EB2007A5D73 /* PNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNConstants.m; path = constants/PNConstants.m; sourceTree = "<group>"; };
+		E0AA7CE81D56948700355C3E /* PNStandardInputOutputPropertiesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNStandardInputOutputPropertiesService.h; path = service/PNStandardInputOutputPropertiesService.h; sourceTree = "<group>"; };
+		E0AA7CE91D56948700355C3E /* PNStandardInputOutputPropertiesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNStandardInputOutputPropertiesService.m; path = service/PNStandardInputOutputPropertiesService.m; sourceTree = "<group>"; };
 		E0BBA73B1A47BE6C001D3DE1 /* PNAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNAppDelegate.h; sourceTree = "<group>"; };
 		E0BBA73C1A47BE6C001D3DE1 /* PNAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNAppDelegate.m; sourceTree = "<group>"; };
 		E0BBA73D1A47BE6C001D3DE1 /* PNApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNApplication.h; sourceTree = "<group>"; };
@@ -227,6 +236,10 @@
 				E06599CA1A7C911200474710 /* PNPropertiesServer.m */,
 				E06599CC1A7C93E600474710 /* PNPropertiesService.h */,
 				E06599CD1A7C93E600474710 /* PNPropertiesService.m */,
+				E06049AA1D65453400F456C8 /* PNStandardInputOutputServer.h */,
+				E06049AB1D65453400F456C8 /* PNStandardInputOutputServer.m */,
+				E0AA7CE81D56948700355C3E /* PNStandardInputOutputPropertiesService.h */,
+				E0AA7CE91D56948700355C3E /* PNStandardInputOutputPropertiesService.m */,
 			);
 			name = service;
 			sourceTree = "<group>";
@@ -446,6 +459,8 @@
 				E04C675A1A588500006861F2 /* PNSerializationUtils.m */,
 				E04C67561A588243006861F2 /* PNStreamUtils.h */,
 				E04C67571A588243006861F2 /* PNStreamUtils.m */,
+				E0516C8A1D6007DD006EBDCB /* PNApplicationUtils.h */,
+				E0516C8B1D6007DD006EBDCB /* PNApplicationUtils.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -623,6 +638,7 @@
 				E06599CE1A7C93E600474710 /* PNPropertiesService.m in Sources */,
 				E0567DC41A7D8FD2001AF187 /* PNPathUtils.m in Sources */,
 				E0567DCC1A7E13C6001AF187 /* PNTableView.m in Sources */,
+				E06049AC1D65453400F456C8 /* PNStandardInputOutputServer.m in Sources */,
 				E0C1C71F1A513D6B00FA209A /* PNStreamConnection.m in Sources */,
 				E010EE711A8B057F00905498 /* DDHotKeyTextField.m in Sources */,
 				E0ED4A7B1AA1365000B877D9 /* PNConfigManager.m in Sources */,
@@ -632,7 +648,9 @@
 				E0ED4A7E1AA1370500B877D9 /* PNHotKey.m in Sources */,
 				E010EE701A8B057F00905498 /* DDHotKeyCenter.m in Sources */,
 				E04C67581A588243006861F2 /* PNStreamUtils.m in Sources */,
+				E0516C8C1D6007DD006EBDCB /* PNApplicationUtils.m in Sources */,
 				E0ED4A811AA1419400B877D9 /* PNHotKeyManager.m in Sources */,
+				E0AA7CEA1D56948700355C3E /* PNStandardInputOutputPropertiesService.m in Sources */,
 				E0567DC11A7D6E4E001AF187 /* PNPropertyFileInfoConfig.m in Sources */,
 				E0567DC91A7DFC3B001AF187 /* PNPropertyFileInfo.m in Sources */,
 				E07E2A371A48B150009E2AB6 /* PNPreferencesWindowController.m in Sources */,

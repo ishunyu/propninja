@@ -60,7 +60,7 @@
 
 - (void)_index:(PNStreamConnection *)connection
 {
-    NSArray *paths = [self.configuration paths];
+    NSArray *paths = [self.configuration arrayOfPaths];
     NSData *request = [PNPropertiesServerUtils requestForIndex:paths];
     
     [connection send:request error:nil];
@@ -76,17 +76,6 @@
 
 #pragma mark Search
 
-- (NSArray *)constructPropertiesFromSearchResult:(NSArray *)results
-{
-    NSMutableArray *properties = [[NSMutableArray alloc] init];
-    
-    for (NSArray* result in results) {
-        [properties addObject:[[PNProperty alloc] initWithFilePath:result[0] key:result[1] value:result[2]]];
-    }
-    
-    return properties;
-}
-
 - (NSArray *)searchProperties:(NSString *)search
 {
     if (![self ready])
@@ -99,8 +88,8 @@
         return nil;
     
     NSDictionary *response_object = [PNSerializationUtils deserialize:response_data];
-    NSLog(@"%@", response_object);
-    return [self constructPropertiesFromSearchResult:response_object[@"value"]];
+    DDLogVerbose(@"searchProperties response_object: %@", response_object);
+    return [PNPropertiesServerUtils constructPropertiesFromSearchResult:response_object[@"value"]];
 }
 
 #pragma mark Set
