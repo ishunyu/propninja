@@ -13,6 +13,7 @@ long ERROR_INPUTSTREAM = 1;
 long ERROR_OUTPUTSTREAM = 2;
 
 NSString *DIR_SCRIPTS = @"scripts";
+NSString *DIR_TEMP = @"scripts/tmp";
 
 NSString *FILE_TYPE_PYTHON = @"py";
 NSString *FILE_TYPE_LOCK = @"lock";
@@ -20,6 +21,7 @@ NSString *FILE_TYPE_JSON = @"json";
 
 
 NSString *FILE_PROPERTIES_SERVER = @"server";
+NSString *FILE_STANDARD_INPUT_OUTPUT_PROPERTIES_SERVER = @"standardinputoutputserver";
 
 NSString *KEY_CONFIG_HOTKEY = @"CONFIG_HOTKEY";
 NSUInteger VALUE_CONFIG_HOTKEY_DEFAULT_MODIFIER_FLAGS = NSAlternateKeyMask | NSCommandKeyMask;
@@ -33,5 +35,3 @@ NSString *KEY_CONFIG_PROPERTY_FILES = @"CONFIG_PROPERTY_FILES";
 NSString *KEY_PROPERTY_TAG = @"tag";
 NSString *KEY_PROPERTY_PATH = @"path";
 NSString *KEY_PROPERTY_ENABLED = @"enabled";
-
-

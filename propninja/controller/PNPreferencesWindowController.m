@@ -43,7 +43,7 @@
 
 - (void)saveAndReload
 {
-    [self.configuration save];
+    [self.configuration saveToUserDefaults];
     [self.tableView reloadData];
 }
 
@@ -113,9 +113,9 @@
         if (self.configuration.count <= row)
             return;
         
-        PNPropertyFileInfo *old = [self.configuration propertyFileInfoForIndex:row];
+        PNPropertyFileInfo *old = [self.configuration pFileInfoForIndex:row];
         BOOL enabled = old.enabled;
-        NSString *tag = old.tag;
+        NSString *label = old.label;
         NSString *path = old.path;
         
         switch (col) {
@@ -124,7 +124,7 @@
                 break;
                 
             case 1:
-                tag = [self.tableView stringValue];
+                label = [self.tableView stringValue];
                 break;
                 
             case 2:
@@ -135,9 +135,9 @@
                 return;
         }
         
-        PNPropertyFileInfo *new = [[PNPropertyFileInfo alloc] initWithTag:tag path:path enabled:enabled];
+        PNPropertyFileInfo *new = [[PNPropertyFileInfo alloc] initWithLabel:label path:path enabled:enabled];
         
-        [self.configuration setPropertyFileInfo:new index:row];
+        [self.configuration setPFileInfo:new index:row];
         [self saveAndReload];
     }
 }
@@ -151,13 +151,13 @@
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     
-    PNPropertyFileInfo *propertyFile = [self.configuration propertyFileInfoForIndex:row];
+    PNPropertyFileInfo *propertyFile = [self.configuration pFileInfoForIndex:row];
     
     if ([tableColumn.identifier isEqualToString:@"enabled"])
         return @(propertyFile.enabled);
     
     if ([tableColumn.identifier isEqualToString:@"tag"])
-        return propertyFile.tag;
+        return propertyFile.label;
     
     return propertyFile.path;
 }
@@ -178,20 +178,20 @@
     BOOL enabled = cell.state == NSOnState;
 
     long row = self.tableView.selectedRow;
-    [self.configuration propertyFileInfoForIndex:row].enabled = enabled;
+    [self.configuration pFileInfoForIndex:row].enabled = enabled;
 
     [self saveAndReload];
 }
 
 - (IBAction)addButtonClicked:(NSButton *)sender
 {
-    [self.configuration addEmptyPropertyFileInfo];
+    [self.configuration addEmptyPFileInfo];
     [self saveAndReload];
 }
 
 - (IBAction)removeButtonClicked:(NSButton *)sender
 {
-    [self.configuration removePropertyFileInfoForIndex:self.tableView.selectedRow];
+    [self.configuration removePFileInfoForIndex:self.tableView.selectedRow];
     [self saveAndReload];
 }
 @end

@@ -17,18 +17,22 @@ Technical Design
 		Mac OS Cocoa Application
 	Back-End
 		Mac OS Cocoa Application
-			Starting the subprocess every single time vs having a long lived subprocess?
-				Starting new one every single time
+			Starting the subprocess every single session vs having a long lived subprocess?
+				Starting new one every single session *
 					Pros
 						Less memory leak possibility
 						Less management for subprocess (start/run/kill)
 					Cons
-						Overhead of starting a new subprocess every single time
+						Overhead of starting a new subprocess every single session
+
+					Index
+					Search
+					Edit
 				Keeping one running
 					Pros
-						Less overhead with starting new subprocesses every single time
+						Less overhead with starting new subprocesses every single session
 					Cons
-						More likely to lead to memory leak issue (is this a concern though?)
+						More likely to lead to memory leak issue (is this an unnecessary concern though?)
 		Python Indexing Service
 		Python Beautiful Properties Library
 			Read properties
@@ -50,4 +54,5 @@ Technical Design
 					vs Java ?
 	Communication
 		Sockets (deprecated)
-		Standard input/output
+		Standard input/output (pipe)
+		Other pipes?

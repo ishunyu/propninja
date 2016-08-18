@@ -8,14 +8,15 @@
 
 #import "PNConstants.h"
 
+#import "PNLoggerUtils.h"
 #import "NSString+Utilities.h"
 
 #import "PNConfigManager.h"
 #import "PNPropertyFileInfoConfig.h"
 
 @interface PNPropertyFileInfoConfig ()
-@property (strong, nonatomic, readwrite) NSMutableArray *propertyFileInfoArray;
-@property (strong, nonatomic) NSDictionary *map;
+@property (strong, nonatomic, readwrite) NSMutableArray *pFileInfos;
+@property (strong, nonatomic) NSDictionary *absPathToPFileInfos;
 @end
 
 @implementation PNPropertyFileInfoConfig
@@ -23,39 +24,39 @@
 -(id)init
 {
     if (self = [super init]) {
-        self.propertyFileInfoArray = [NSMutableArray arrayWithArray:[PNConfigManager propertyFileInfoArray]];
-        self.map = [self createPathToPropertyFileInfoIndex];
+        self.pFileInfos = [NSMutableArray arrayWithArray:[PNConfigManager pFileInfos]];
+        [self index];
     }
     
     return self;
 }
 
-- (NSDictionary *) createPathToPropertyFileInfoIndex
+- (void) index
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     
-    for (PNPropertyFileInfo *propertyFile in self.propertyFileInfoArray)
+    for (PNPropertyFileInfo *propertyFile in self.pFileInfos)
         dict[propertyFile.absolutePath == nil ? @"" : propertyFile.absolutePath] = propertyFile;
     
-    return [NSDictionary dictionaryWithDictionary:dict];
+    self.absPathToPFileInfos =[NSDictionary dictionaryWithDictionary:dict];
 }
 
 #pragma mark Stuff
 - (long)count
 {
-    return self.propertyFileInfoArray.count;
+    return self.pFileInfos.count;
 }
 
-- (PNPropertyFileInfo *)propertyFileInfoForPath:(NSString *)path;
+- (PNPropertyFileInfo *)pFileInfoForPath:(NSString *)path;
 {
-    return self.map[path];
+    return self.absPathToPFileInfos[path];
 }
 
-- (NSArray *)paths
+- (NSArray *)arrayOfPaths
 {
     NSMutableArray *config = [[NSMutableArray alloc] init];
     
-    for (PNPropertyFileInfo *propertyFile in self.propertyFileInfoArray)
+    for (PNPropertyFileInfo *propertyFile in self.pFileInfos)
         if (propertyFile.enabled && ![NSString isNullOrEmpty:propertyFile.absolutePath])
             [config addObject:propertyFile.absolutePath];
     
@@ -63,31 +64,31 @@
     return config;
 }
 
-- (void)save
+- (void)saveToUserDefaults
 {
-    [PNConfigManager setPropertyFileInfoArray:[NSArray arrayWithArray:self.propertyFileInfoArray]];
+    [PNConfigManager savePFileInfosToUserDefaults:[NSArray arrayWithArray:self.pFileInfos]];
 }
 
 
-- (void)addEmptyPropertyFileInfo
+- (void)addEmptyPFileInfo
 {
-    [self setPropertyFileInfo:[[PNPropertyFileInfo alloc] initWithTag:nil path:nil enabled:YES] index:[self count]];
+    [self setPropertyFileInfo:[[PNPropertyFileInfo alloc] initWithLabel:nil path:nil enabled:YES] index:[self count]];
 }
 
 #pragma mark Index Based Operations
-- (PNPropertyFileInfo *)propertyFileInfoForIndex:(long)index
+- (PNPropertyFileInfo *)pFileInfoForIndex:(long)index
 {
-    return [self.propertyFileInfoArray objectAtIndex:index];
+    return [self.pFileInfos objectAtIndex:index];
 }
 
 - (void)setPropertyFileInfo:(PNPropertyFileInfo *)fileInfo index:(long)index
 {
-    [self.propertyFileInfoArray setObject:fileInfo atIndexedSubscript:index];
+    [self.pFileInfos setObject:fileInfo atIndexedSubscript:index];
 }
 
 
-- (void)removePropertyFileInfoForIndex:(long)index
+- (void)removePFileInfoForIndex:(long)index
 {
-    [self.propertyFileInfoArray removeObjectAtIndex:index];
+    [self.pFileInfos removeObjectAtIndex:index];
 }
 @end

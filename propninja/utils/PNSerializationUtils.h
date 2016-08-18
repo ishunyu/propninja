@@ -11,6 +11,5 @@
 @interface PNSerializationUtils : NSObject
 + (NSData *)serialize:(id)object;
 
-+ (NSDictionary *)deserialize:(NSData *)data;
-+ (NSArray *)deserializeArray:(NSData *)data;
++ (NSDictionary *)deserializeDictionary:(NSData *)data;
 @end

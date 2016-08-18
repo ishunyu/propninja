@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface PNConfigManager : NSObject
-+ (NSArray *)propertyFileInfoArray;
-+ (void)setPropertyFileInfoArray:(NSArray* )propertyFileInfoArray;
++ (NSArray *)pFileInfos;
++ (void)savePFileInfosToUserDefaults:(NSArray* )propertyFileInfoArray;
 + (id)hotKey;
 + (void)setHotKey:(id)hotKey;
 @end

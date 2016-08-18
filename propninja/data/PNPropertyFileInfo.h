@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface PNPropertyFileInfo : NSObject <NSCoding>
-@property (strong, nonatomic, readonly) NSString *tag;
+@property (strong, nonatomic, readonly) NSString *label;
 @property (strong, nonatomic, readonly) NSString *path;
 @property (strong, nonatomic, readonly) NSString *absolutePath;
 @property (nonatomic, readwrite) BOOL enabled;
 
-- (id)initWithTag:(NSString *)tag path:(NSString *)path enabled:(BOOL)enabled;
+- (id)initWithLabel:(NSString *)label path:(NSString *)path enabled:(BOOL)enabled;
 @end

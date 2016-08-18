@@ -11,7 +11,7 @@
 #import "PNHotKeyManager.h"
 #import "PNLoggerUtils.h"
 #import "PNStreamUtils.h"
-#import "PNStreamConnection.h"
+#import "PNApplicationUtils.h"
 
 #import "PNPropertiesWindowController.h"
 #import "PNPreferencesWindowController.h"
@@ -67,7 +67,7 @@
 
 - (void)quit:(id)sender
 {
-    [[NSApplication sharedApplication] terminate:nil];
+    [PNApplicationUtils terminate];
 }
 
 @end

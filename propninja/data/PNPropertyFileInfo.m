@@ -10,18 +10,18 @@
 #import "PNPropertyFileInfo.h"
 
 @interface PNPropertyFileInfo ()
-@property (strong, nonatomic, readwrite) NSString *tag;
+@property (strong, nonatomic, readwrite) NSString *label;
 @property (strong, nonatomic, readwrite) NSString *path;
 @property (strong, nonatomic, readwrite) NSString *absolutePath;
 @end
 
 @implementation PNPropertyFileInfo
 
-- (id)initWithTag:(NSString *)tag path:(NSString *)path enabled:(BOOL)enabled
+- (id)initWithLabel:(NSString *)label path:(NSString *)path enabled:(BOOL)enabled
 {
     if (self = [super init])
     {
-        self.tag = tag;
+        self.label = label;
         self.path = path;
         self.absolutePath = [path stringByExpandingTildeInPath];
         self.enabled = enabled;
@@ -32,14 +32,14 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    return [self initWithTag:[aDecoder decodeObjectForKey:KEY_PROPERTY_TAG]
+    return [self initWithLabel:[aDecoder decodeObjectForKey:KEY_PROPERTY_TAG]
                         path:[aDecoder decodeObjectForKey:KEY_PROPERTY_PATH]
                      enabled:[aDecoder decodeBoolForKey:KEY_PROPERTY_ENABLED]];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:self.tag forKey:KEY_PROPERTY_TAG];
+    [aCoder encodeObject:self.label forKey:KEY_PROPERTY_TAG];
     [aCoder encodeObject:self.path forKey:KEY_PROPERTY_PATH];
     [aCoder encodeBool:self.enabled forKey:KEY_PROPERTY_ENABLED];
 }

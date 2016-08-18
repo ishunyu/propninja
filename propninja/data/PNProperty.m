@@ -9,17 +9,17 @@
 #import "PNProperty.h"
 
 @interface PNProperty ()
-@property (strong, nonatomic, readwrite) NSString *filePath;
+@property (strong, nonatomic, readwrite) PNPropertyFileInfo *pFileInfo;
 @property (strong, nonatomic, readwrite) NSString *key;
 @property (strong, nonatomic, readwrite) NSString *value;
 @end
 
 @implementation PNProperty
--(id)initWithFilePath:(NSString *)filePath key:(NSString *)key value:(NSString *)value
+-(id)initWithPFileInfo:(PNPropertyFileInfo *)pFileInfo key:(NSString *)key value:(NSString *)value
 {
     self = [super init];
     if (self) {
-        self.filePath = filePath;
+        self.pFileInfo = pFileInfo;
         self.key = key;
         self.value = value;
     }
@@ -31,11 +31,18 @@
 {
     self = [super init];
     if (self) {
-        self.filePath = property.filePath;
+        self.pFileInfo = property.pFileInfo;
         self.key = property.key;
         self.value = value;
     }
     
     return self;
+}
+
+- (NSString *)description
+{
+    return [@{@"pFileInfo": self.pFileInfo,
+              @"key": self.key,
+              @"value": self.value} description];
 }
 @end
