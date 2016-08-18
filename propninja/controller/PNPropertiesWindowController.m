@@ -9,8 +9,7 @@
 #import "PNLoggerUtils.h"
 
 #import "PNPropertyFileInfoConfig.h"
-#import "PNPropertiesService.h"
-#import "PNStandardInputOutputPropertiesService.h"
+#import "PNService.h"
 
 #import "PNPropertiesTableCellView.h"
 #import "PNPropertiesTableRowView.h"
@@ -27,7 +26,7 @@
 @property (weak) IBOutlet NSScrollView *scrollView;
 @property (weak) IBOutlet PNPropertiesTableView *tableView;
 
-@property (strong, nonatomic) PNStandardInputOutputPropertiesService *service;
+@property (strong, nonatomic) PNService *service;
 @property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) NSArray *views;
 
@@ -44,48 +43,50 @@
     if (self)
     {
         self.appDelegate = appDelegate;
-        self.service = [[PNStandardInputOutputPropertiesService alloc] init];
+        self.service = [[PNService alloc] init];
     }
     
     return self;
 }
 
-- (NSArray *)createViews:(NSArray *)properties
+- (NSArray *)createTableCellViews:(NSArray *)properties
 {
-    static NSString *nibName = @"PNPropertiesTableCellView";
-    NSArray *nibViews;
     NSMutableArray *cellViews = [NSMutableArray array];
     
     for (NSUInteger i = 0; i < properties.count; i++)
     {
         PNProperty *property = properties[i];
+        PNPropertiesTableCellView *cellView = [self createTableCellViewFromNib];
         
-        [[NSBundle mainBundle] loadNibNamed:nibName owner:self.tableView topLevelObjects:&nibViews];
-        
-        for (NSView *view in nibViews)
-        {
-            if ([[view class] isSubclassOfClass:[NSTableCellView class]])
-            {
-                PNPropertiesTableCellView *cellView = (PNPropertiesTableCellView *)view;
-                
-                cellView.index = i;
-                cellView.keyLabel.stringValue = property.key;
-                cellView.fileLabel.stringValue = [self.service.pFilesConfig pFileInfoForPath:property.filePath].label;
-                cellView.valueField.stringValue = property.value;
-                cellView.valueField.delegate = self.tableView;
-                
-                [cellViews addObject:cellView];
-                break;
-            }
-        }
+        [cellView populate:self.tableView index:i
+                  property:property
+         propertyFileLabel:property.pFileInfo.label];
+        [cellViews addObject:cellView];
     }
     
     return [NSArray arrayWithArray:cellViews];
 }
 
+- (PNPropertiesTableCellView *)createTableCellViewFromNib
+{
+    static NSString *nibName = @"PNPropertiesTableCellView";
+    NSArray *nibViews;
+    [[NSBundle mainBundle] loadNibNamed:nibName owner:self.tableView topLevelObjects:&nibViews];
+    for (NSView *view in nibViews)
+    {
+        if ([[view class] isSubclassOfClass:[NSTableCellView class]])
+        {
+            return (PNPropertiesTableCellView *)view;
+        }
+    }
+    
+    DDLogError(@"error creating %@", [PNPropertiesTableCellView class]);
+    return nil;
+}
+
 - (void)refreshData
 {
-    self.views = [self createViews:self.data];
+    self.views = [self createTableCellViews:self.data];
     [self.tableView reloadData];
 }
 
@@ -226,7 +227,7 @@
         {
             PNProperty *property = self.data[i];
             
-            if ([property.filePath isEqualToString:oldProperty.filePath] && [property.key isEqualToString:oldProperty.key]) {
+            if ([property.pFileInfo isEqualTo:oldProperty.pFileInfo] && [property.key isEqualToString:oldProperty.key]) {
                 [self.window makeFirstResponder:self.tableView];
                 [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:i] byExtendingSelection:NO];
                 return;

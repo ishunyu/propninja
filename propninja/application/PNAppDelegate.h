@@ -8,10 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "PNPropertiesServer.h"
-
 @interface PNAppDelegate : NSObject <NSApplicationDelegate>
-@property (strong, nonatomic, readonly) PNPropertiesServer *propertiesServer;
 
 - (void)quit:(id)sender;
 

@@ -16,7 +16,7 @@
 		E03A51E01A85998C00356D90 /* PNPropertiesTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = E03A51DF1A85998C00356D90 /* PNPropertiesTableCellView.m */; };
 		E04C67581A588243006861F2 /* PNStreamUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E04C67571A588243006861F2 /* PNStreamUtils.m */; };
 		E04C675B1A588500006861F2 /* PNSerializationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E04C675A1A588500006861F2 /* PNSerializationUtils.m */; };
-		E04C675E1A588727006861F2 /* PNPropertiesServerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E04C675D1A588727006861F2 /* PNPropertiesServerUtils.m */; };
+		E04C675E1A588727006861F2 /* PNServiceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E04C675D1A588727006861F2 /* PNServiceUtils.m */; };
 		E04C67611A59E640006861F2 /* PNProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E04C67601A59E640006861F2 /* PNProperty.m */; };
 		E04C67641A5A6214006861F2 /* PNTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E04C67631A5A6214006861F2 /* PNTableHeaderCell.m */; };
 		E0516C8C1D6007DD006EBDCB /* PNApplicationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E0516C8B1D6007DD006EBDCB /* PNApplicationUtils.m */; };
@@ -25,10 +25,7 @@
 		E0567DC41A7D8FD2001AF187 /* PNPathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E0567DC31A7D8FD2001AF187 /* PNPathUtils.m */; };
 		E0567DC91A7DFC3B001AF187 /* PNPropertyFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E0567DC81A7DFC3B001AF187 /* PNPropertyFileInfo.m */; };
 		E0567DCC1A7E13C6001AF187 /* PNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0567DCB1A7E13C6001AF187 /* PNTableView.m */; };
-		E06049AC1D65453400F456C8 /* PNStandardInputOutputServer.m in Sources */ = {isa = PBXBuildFile; fileRef = E06049AB1D65453400F456C8 /* PNStandardInputOutputServer.m */; };
-		E06599C71A7C8BC000474710 /* PNNumericUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E06599C61A7C8BC000474710 /* PNNumericUtils.m */; };
-		E06599CB1A7C911200474710 /* PNPropertiesServer.m in Sources */ = {isa = PBXBuildFile; fileRef = E06599CA1A7C911200474710 /* PNPropertiesServer.m */; };
-		E06599CE1A7C93E600474710 /* PNPropertiesService.m in Sources */ = {isa = PBXBuildFile; fileRef = E06599CD1A7C93E600474710 /* PNPropertiesService.m */; };
+		E06049AC1D65453400F456C8 /* PNServer.m in Sources */ = {isa = PBXBuildFile; fileRef = E06049AB1D65453400F456C8 /* PNServer.m */; };
 		E06E022E1A86A60C004B4C17 /* PNPathUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E06E022D1A86A60C004B4C17 /* PNPathUtilsTest.m */; };
 		E06E02321A86AA05004B4C17 /* NSStringUtilitiesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E06E02311A86AA05004B4C17 /* NSStringUtilitiesTest.m */; };
 		E07E2A341A47D6E1009E2AB6 /* Automator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E07E2A331A47D6E1009E2AB6 /* Automator.framework */; };
@@ -43,7 +40,7 @@
 		E09563C91A3BA5E700DFC645 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E09563C71A3BA5E700DFC645 /* InfoPlist.strings */; };
 		E0A21E3C1A4B3EB2007A5D73 /* PNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A21E3B1A4B3EB2007A5D73 /* PNConstants.m */; };
 		E0A8C13F1A3D2A540036A675 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E039E6361A3BD27D002832C5 /* Carbon.framework */; };
-		E0AA7CEA1D56948700355C3E /* PNStandardInputOutputPropertiesService.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AA7CE91D56948700355C3E /* PNStandardInputOutputPropertiesService.m */; };
+		E0AA7CEA1D56948700355C3E /* PNService.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AA7CE91D56948700355C3E /* PNService.m */; };
 		E0BBA7591A47BE6C001D3DE1 /* PNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BBA73C1A47BE6C001D3DE1 /* PNAppDelegate.m */; };
 		E0BBA75A1A47BE6C001D3DE1 /* PNApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BBA73E1A47BE6C001D3DE1 /* PNApplication.m */; };
 		E0BBA75B1A47BE6C001D3DE1 /* PNMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BBA7411A47BE6C001D3DE1 /* PNMenuController.m */; };
@@ -53,8 +50,6 @@
 		E0BBA7611A47BE6C001D3DE1 /* PNPropertiesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0BBA74C1A47BE6C001D3DE1 /* PNPropertiesWindow.xib */; };
 		E0BBA7621A47BE6C001D3DE1 /* PNPropertiesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BBA74F1A47BE6C001D3DE1 /* PNPropertiesTableView.m */; };
 		E0BBA7631A47BE6C001D3DE1 /* NSWindow+canBecomeKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BBA7511A47BE6C001D3DE1 /* NSWindow+canBecomeKeyWindow.m */; };
-		E0BBA7641A47BE6C001D3DE1 /* PNScriptUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BBA7541A47BE6C001D3DE1 /* PNScriptUtils.m */; };
-		E0C1C71F1A513D6B00FA209A /* PNStreamConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E0C1C71C1A513D6B00FA209A /* PNStreamConnection.m */; };
 		E0C1C7201A513D6B00FA209A /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E0C1C71E1A513D6B00FA209A /* NSString+Utilities.m */; };
 		E0ED4A7B1AA1365000B877D9 /* PNConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ED4A7A1AA1365000B877D9 /* PNConfigManager.m */; };
 		E0ED4A7E1AA1370500B877D9 /* PNHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = E0ED4A7D1AA1370500B877D9 /* PNHotKey.m */; };
@@ -92,8 +87,8 @@
 		E04C67571A588243006861F2 /* PNStreamUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNStreamUtils.m; sourceTree = "<group>"; };
 		E04C67591A588500006861F2 /* PNSerializationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNSerializationUtils.h; sourceTree = "<group>"; };
 		E04C675A1A588500006861F2 /* PNSerializationUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNSerializationUtils.m; sourceTree = "<group>"; };
-		E04C675C1A588727006861F2 /* PNPropertiesServerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPropertiesServerUtils.h; sourceTree = "<group>"; };
-		E04C675D1A588727006861F2 /* PNPropertiesServerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPropertiesServerUtils.m; sourceTree = "<group>"; };
+		E04C675C1A588727006861F2 /* PNServiceUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNServiceUtils.h; sourceTree = "<group>"; };
+		E04C675D1A588727006861F2 /* PNServiceUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNServiceUtils.m; sourceTree = "<group>"; };
 		E04C675F1A59E640006861F2 /* PNProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNProperty.h; sourceTree = "<group>"; };
 		E04C67601A59E640006861F2 /* PNProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNProperty.m; sourceTree = "<group>"; };
 		E04C67621A5A6214006861F2 /* PNTableHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNTableHeaderCell.h; sourceTree = "<group>"; };
@@ -111,14 +106,8 @@
 		E0567DC81A7DFC3B001AF187 /* PNPropertyFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPropertyFileInfo.m; sourceTree = "<group>"; };
 		E0567DCA1A7E13C6001AF187 /* PNTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNTableView.h; sourceTree = "<group>"; };
 		E0567DCB1A7E13C6001AF187 /* PNTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNTableView.m; sourceTree = "<group>"; };
-		E06049AA1D65453400F456C8 /* PNStandardInputOutputServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNStandardInputOutputServer.h; path = service/PNStandardInputOutputServer.h; sourceTree = "<group>"; };
-		E06049AB1D65453400F456C8 /* PNStandardInputOutputServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNStandardInputOutputServer.m; path = service/PNStandardInputOutputServer.m; sourceTree = "<group>"; };
-		E06599C51A7C8BC000474710 /* PNNumericUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNNumericUtils.h; sourceTree = "<group>"; };
-		E06599C61A7C8BC000474710 /* PNNumericUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNNumericUtils.m; sourceTree = "<group>"; };
-		E06599C91A7C911200474710 /* PNPropertiesServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNPropertiesServer.h; path = service/PNPropertiesServer.h; sourceTree = "<group>"; };
-		E06599CA1A7C911200474710 /* PNPropertiesServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNPropertiesServer.m; path = service/PNPropertiesServer.m; sourceTree = "<group>"; };
-		E06599CC1A7C93E600474710 /* PNPropertiesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNPropertiesService.h; path = service/PNPropertiesService.h; sourceTree = "<group>"; };
-		E06599CD1A7C93E600474710 /* PNPropertiesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNPropertiesService.m; path = service/PNPropertiesService.m; sourceTree = "<group>"; };
+		E06049AA1D65453400F456C8 /* PNServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNServer.h; path = service/PNServer.h; sourceTree = "<group>"; };
+		E06049AB1D65453400F456C8 /* PNServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNServer.m; path = service/PNServer.m; sourceTree = "<group>"; };
 		E06E022D1A86A60C004B4C17 /* PNPathUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNPathUtilsTest.m; path = utils/PNPathUtilsTest.m; sourceTree = "<group>"; };
 		E06E02311A86AA05004B4C17 /* NSStringUtilitiesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSStringUtilitiesTest.m; path = util/NSStringUtilitiesTest.m; sourceTree = "<group>"; };
 		E07E2A331A47D6E1009E2AB6 /* Automator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Automator.framework; path = System/Library/Frameworks/Automator.framework; sourceTree = SDKROOT; };
@@ -141,8 +130,8 @@
 		E09563C81A3BA5E700DFC645 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E0A21E3A1A4B3EB2007A5D73 /* PNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNConstants.h; path = constants/PNConstants.h; sourceTree = "<group>"; };
 		E0A21E3B1A4B3EB2007A5D73 /* PNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNConstants.m; path = constants/PNConstants.m; sourceTree = "<group>"; };
-		E0AA7CE81D56948700355C3E /* PNStandardInputOutputPropertiesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNStandardInputOutputPropertiesService.h; path = service/PNStandardInputOutputPropertiesService.h; sourceTree = "<group>"; };
-		E0AA7CE91D56948700355C3E /* PNStandardInputOutputPropertiesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNStandardInputOutputPropertiesService.m; path = service/PNStandardInputOutputPropertiesService.m; sourceTree = "<group>"; };
+		E0AA7CE81D56948700355C3E /* PNService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNService.h; path = service/PNService.h; sourceTree = "<group>"; };
+		E0AA7CE91D56948700355C3E /* PNService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNService.m; path = service/PNService.m; sourceTree = "<group>"; };
 		E0BBA73B1A47BE6C001D3DE1 /* PNAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNAppDelegate.h; sourceTree = "<group>"; };
 		E0BBA73C1A47BE6C001D3DE1 /* PNAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNAppDelegate.m; sourceTree = "<group>"; };
 		E0BBA73D1A47BE6C001D3DE1 /* PNApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNApplication.h; sourceTree = "<group>"; };
@@ -158,10 +147,6 @@
 		E0BBA74F1A47BE6C001D3DE1 /* PNPropertiesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPropertiesTableView.m; sourceTree = "<group>"; };
 		E0BBA7501A47BE6C001D3DE1 /* NSWindow+canBecomeKeyWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+canBecomeKeyWindow.h"; sourceTree = "<group>"; };
 		E0BBA7511A47BE6C001D3DE1 /* NSWindow+canBecomeKeyWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+canBecomeKeyWindow.m"; sourceTree = "<group>"; };
-		E0BBA7531A47BE6C001D3DE1 /* PNScriptUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNScriptUtils.h; sourceTree = "<group>"; };
-		E0BBA7541A47BE6C001D3DE1 /* PNScriptUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNScriptUtils.m; sourceTree = "<group>"; };
-		E0C1C71B1A513D6B00FA209A /* PNStreamConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNStreamConnection.h; path = util/PNStreamConnection.h; sourceTree = "<group>"; };
-		E0C1C71C1A513D6B00FA209A /* PNStreamConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNStreamConnection.m; path = util/PNStreamConnection.m; sourceTree = "<group>"; };
 		E0C1C71D1A513D6B00FA209A /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Utilities.h"; path = "util/NSString+Utilities.h"; sourceTree = "<group>"; };
 		E0C1C71E1A513D6B00FA209A /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utilities.m"; path = "util/NSString+Utilities.m"; sourceTree = "<group>"; };
 		E0ED4A791AA1365000B877D9 /* PNConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNConfigManager.h; sourceTree = "<group>"; };
@@ -232,14 +217,10 @@
 		E06599C81A7C90CF00474710 /* service */ = {
 			isa = PBXGroup;
 			children = (
-				E06599C91A7C911200474710 /* PNPropertiesServer.h */,
-				E06599CA1A7C911200474710 /* PNPropertiesServer.m */,
-				E06599CC1A7C93E600474710 /* PNPropertiesService.h */,
-				E06599CD1A7C93E600474710 /* PNPropertiesService.m */,
-				E06049AA1D65453400F456C8 /* PNStandardInputOutputServer.h */,
-				E06049AB1D65453400F456C8 /* PNStandardInputOutputServer.m */,
-				E0AA7CE81D56948700355C3E /* PNStandardInputOutputPropertiesService.h */,
-				E0AA7CE91D56948700355C3E /* PNStandardInputOutputPropertiesService.m */,
+				E06049AA1D65453400F456C8 /* PNServer.h */,
+				E06049AB1D65453400F456C8 /* PNServer.m */,
+				E0AA7CE81D56948700355C3E /* PNService.h */,
+				E0AA7CE91D56948700355C3E /* PNService.m */,
 			);
 			name = service;
 			sourceTree = "<group>";
@@ -447,14 +428,10 @@
 			children = (
 				E0567DBC1A7D55FD001AF187 /* PNLoggerUtils.h */,
 				E0567DBD1A7D55FD001AF187 /* PNLoggerUtils.m */,
-				E06599C51A7C8BC000474710 /* PNNumericUtils.h */,
-				E06599C61A7C8BC000474710 /* PNNumericUtils.m */,
 				E0567DC21A7D8FD2001AF187 /* PNPathUtils.h */,
 				E0567DC31A7D8FD2001AF187 /* PNPathUtils.m */,
-				E04C675C1A588727006861F2 /* PNPropertiesServerUtils.h */,
-				E04C675D1A588727006861F2 /* PNPropertiesServerUtils.m */,
-				E0BBA7531A47BE6C001D3DE1 /* PNScriptUtils.h */,
-				E0BBA7541A47BE6C001D3DE1 /* PNScriptUtils.m */,
+				E04C675C1A588727006861F2 /* PNServiceUtils.h */,
+				E04C675D1A588727006861F2 /* PNServiceUtils.m */,
 				E04C67591A588500006861F2 /* PNSerializationUtils.h */,
 				E04C675A1A588500006861F2 /* PNSerializationUtils.m */,
 				E04C67561A588243006861F2 /* PNStreamUtils.h */,
@@ -472,8 +449,6 @@
 				E0ED4A7D1AA1370500B877D9 /* PNHotKey.m */,
 				E0ED4A7F1AA1419400B877D9 /* PNHotKeyManager.h */,
 				E0ED4A801AA1419400B877D9 /* PNHotKeyManager.m */,
-				E0C1C71B1A513D6B00FA209A /* PNStreamConnection.h */,
-				E0C1C71C1A513D6B00FA209A /* PNStreamConnection.m */,
 				E0C1C71D1A513D6B00FA209A /* NSString+Utilities.h */,
 				E0C1C71E1A513D6B00FA209A /* NSString+Utilities.m */,
 			);
@@ -623,34 +598,29 @@
 				E0BBA7631A47BE6C001D3DE1 /* NSWindow+canBecomeKeyWindow.m in Sources */,
 				E0BBA75C1A47BE6C001D3DE1 /* PNPropertiesWindowController.m in Sources */,
 				E0BBA75A1A47BE6C001D3DE1 /* PNApplication.m in Sources */,
-				E0BBA7641A47BE6C001D3DE1 /* PNScriptUtils.m in Sources */,
 				E04C67641A5A6214006861F2 /* PNTableHeaderCell.m in Sources */,
 				E0FFD1881A85C0F100F1713C /* PNPropertiesTableRowView.m in Sources */,
 				E0A21E3C1A4B3EB2007A5D73 /* PNConstants.m in Sources */,
 				E0BBA7591A47BE6C001D3DE1 /* PNAppDelegate.m in Sources */,
-				E06599CB1A7C911200474710 /* PNPropertiesServer.m in Sources */,
 				E0BBA7621A47BE6C001D3DE1 /* PNPropertiesTableView.m in Sources */,
-				E04C675E1A588727006861F2 /* PNPropertiesServerUtils.m in Sources */,
+				E04C675E1A588727006861F2 /* PNServiceUtils.m in Sources */,
 				E0BBA75B1A47BE6C001D3DE1 /* PNMenuController.m in Sources */,
 				E04C67611A59E640006861F2 /* PNProperty.m in Sources */,
 				E010EE721A8B057F00905498 /* DDHotKeyUtilities.m in Sources */,
 				E09563AD1A3BA5E700DFC645 /* main.m in Sources */,
-				E06599CE1A7C93E600474710 /* PNPropertiesService.m in Sources */,
 				E0567DC41A7D8FD2001AF187 /* PNPathUtils.m in Sources */,
 				E0567DCC1A7E13C6001AF187 /* PNTableView.m in Sources */,
-				E06049AC1D65453400F456C8 /* PNStandardInputOutputServer.m in Sources */,
-				E0C1C71F1A513D6B00FA209A /* PNStreamConnection.m in Sources */,
+				E06049AC1D65453400F456C8 /* PNServer.m in Sources */,
 				E010EE711A8B057F00905498 /* DDHotKeyTextField.m in Sources */,
 				E0ED4A7B1AA1365000B877D9 /* PNConfigManager.m in Sources */,
 				E0567DBE1A7D55FD001AF187 /* PNLoggerUtils.m in Sources */,
 				E0C1C7201A513D6B00FA209A /* NSString+Utilities.m in Sources */,
-				E06599C71A7C8BC000474710 /* PNNumericUtils.m in Sources */,
 				E0ED4A7E1AA1370500B877D9 /* PNHotKey.m in Sources */,
 				E010EE701A8B057F00905498 /* DDHotKeyCenter.m in Sources */,
 				E04C67581A588243006861F2 /* PNStreamUtils.m in Sources */,
 				E0516C8C1D6007DD006EBDCB /* PNApplicationUtils.m in Sources */,
 				E0ED4A811AA1419400B877D9 /* PNHotKeyManager.m in Sources */,
-				E0AA7CEA1D56948700355C3E /* PNStandardInputOutputPropertiesService.m in Sources */,
+				E0AA7CEA1D56948700355C3E /* PNService.m in Sources */,
 				E0567DC11A7D6E4E001AF187 /* PNPropertyFileInfoConfig.m in Sources */,
 				E0567DC91A7DFC3B001AF187 /* PNPropertyFileInfo.m in Sources */,
 				E07E2A371A48B150009E2AB6 /* PNPreferencesWindowController.m in Sources */,

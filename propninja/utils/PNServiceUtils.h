@@ -1,5 +1,5 @@
 //
-//  PNPropertiesServerUtils.h
+//  PNServiceUtils.h
 //  propninja
 //
 //  Created by Shun Yu on 1/3/15.
@@ -9,12 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #import "PNProperty.h"
+#import "PNPropertyFileInfoConfig.h"
 
-@interface PNPropertiesServerUtils : NSObject
-+ (NSString *)pathForLock;
-
-+ (NSArray *)arguments:(int)port lockFile:(NSString *)lockFile;
-+ (NSString *)pathForServer;
+@interface PNServiceUtils : NSObject
 + (NSString *)pathForStandardInputOutputServer;
 + (NSString *)pathForLogFolder;
 
@@ -25,11 +22,5 @@
 + (NSDictionary *)dictForSet:(PNProperty *)property;
 + (NSDictionary *)dictForStop;
 
-+ (NSData *)requestForIndex:(NSArray *)configuration;
-+ (NSData *)requestForSearch:(NSString *)search;
-+ (NSData *)requestForSet:(PNProperty *)property;
-+ (NSData *)requestForStatus;
-+ (NSData *)requestForStop;
-
-+ (NSArray *)constructPropertiesFromSearchResult:(NSArray *)results;
++ (NSArray *)constructPropertiesFromSearchResult:(NSArray *)results pFileInfoConfig:(PNPropertyFileInfoConfig *)pFileInfoConfig;
 @end

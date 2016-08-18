@@ -10,25 +10,25 @@
 #import "PNLoggerUtils.h"
 #import "PNSerializationUtils.h"
 #import "PNStreamUtils.h"
-#import "PNPropertiesServerUtils.h"
+#import "PNServiceUtils.h"
 #import "PNApplicationUtils.h"
 
-#import "PNStandardInputOutputServer.h"
-#import "PNStandardInputOutputPropertiesService.h"
+#import "PNServer.h"
+#import "PNService.h"
 
-@interface PNStandardInputOutputPropertiesService ()
+@interface PNService ()
 @property (strong, nonatomic, readwrite) PNPropertyFileInfoConfig *pFilesConfig;
-@property (strong, nonatomic) PNStandardInputOutputServer *pServer;
+@property (strong, nonatomic) PNServer *pServer;
 @end
 
-@implementation PNStandardInputOutputPropertiesService
+@implementation PNService
 
 - (id)init
 {
     self = [super init];
     if (self) {
         self.pFilesConfig = [[PNPropertyFileInfoConfig alloc] init];
-        self.pServer = [[PNStandardInputOutputServer alloc] init];
+        self.pServer = [[PNServer alloc] init];
         [self.pServer startInBackgroundWithCallback:^(BOOL success){
             if (success){
                 DDLogInfo(@"started");
@@ -45,7 +45,7 @@
 
 - (void)index
 {
-    NSDictionary *data = [self.pServer sendRequest:[PNPropertiesServerUtils dictForIndex:[self.pFilesConfig arrayOfPaths]]];
+    NSDictionary *data = [self.pServer sendRequest:[PNServiceUtils dictForIndex:[self.pFilesConfig arrayOfPaths]]];
     if ([data[@"value"] boolValue]) {
         DDLogInfo(@"indexed");
     }
@@ -56,18 +56,18 @@
 
 - (NSArray *)searchProperties:(NSString *)search
 {
-    NSDictionary *data = [self.pServer sendRequest:[PNPropertiesServerUtils dictForSearch:search]];
-    return [PNPropertiesServerUtils constructPropertiesFromSearchResult:data[@"value"]];
+    NSDictionary *data = [self.pServer sendRequest:[PNServiceUtils dictForSearch:search]];
+    return [PNServiceUtils constructPropertiesFromSearchResult:data[@"value"] pFileInfoConfig:self.pFilesConfig];
 }
 
 - (void)setProperty:(PNProperty *)property
 {
-    [self.pServer sendRequest:[PNPropertiesServerUtils dictForSet:property]];
+    [self.pServer sendRequest:[PNServiceUtils dictForSet:property]];
 }
 
 - (void) stop
 {
     [self.pServer stop];
-    DDLogInfo(@"%@ stopped", [self className]);
+    DDLogInfo(@"stopped");
 }
 @end

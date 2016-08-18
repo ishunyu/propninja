@@ -14,6 +14,12 @@
 @end
 
 @implementation PNPropertiesTableCellView
-
-
+- (void)populate:(id)delegate index:(NSUInteger)index property:(PNProperty *)property propertyFileLabel:(NSString *)label
+{
+    self.index = index;
+    self.keyLabel.stringValue = property.key;
+    self.valueField.stringValue = property.value;
+    self.valueField.delegate = delegate;
+    self.fileLabel.stringValue = label;
+}
 @end

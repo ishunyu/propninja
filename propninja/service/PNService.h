@@ -11,7 +11,7 @@
 #import "PNPropertyFileInfoConfig.h"
 #import "PNProperty.h"
 
-@interface PNStandardInputOutputPropertiesService : NSObject
+@interface PNService : NSObject
 @property (strong, nonatomic, readonly) PNPropertyFileInfoConfig *pFilesConfig;
 
 - (void)index;

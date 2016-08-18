@@ -1,5 +1,5 @@
 //
-//  PNStandardInputOutputServer.h
+//  PNServer.h
 //  propninja
 //
 //  Created by Shun Yu on 8/18/16.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PNStandardInputOutputServer : NSObject
+@interface PNServer : NSObject
 - (void)startInBackgroundWithCallback: (void (^)(BOOL)) callback;
 - (void)stop;
 

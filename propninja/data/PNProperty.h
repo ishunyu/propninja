@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PNPropertyFileInfo.h"
+
 @interface PNProperty : NSObject
-@property (strong, nonatomic, readonly) NSString *filePath;
+@property (strong, nonatomic, readonly) PNPropertyFileInfo *pFileInfo;
 @property (strong, nonatomic, readonly) NSString *key;
 @property (strong, nonatomic, readonly) NSString *value;
 
--(id)initWithFilePath:(NSString *)filePath key:(NSString *)key value:(NSString *)value;
+-(id)initWithPFileInfo:(PNPropertyFileInfo *)pFileInfo key:(NSString *)key value:(NSString *)value;
 -(id)initWithProperty:(PNProperty *)property value:(NSString *)value;
 @end

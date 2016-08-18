@@ -11,7 +11,6 @@
 #import "PNHotKeyManager.h"
 #import "PNLoggerUtils.h"
 #import "PNStreamUtils.h"
-#import "PNStreamConnection.h"
 #import "PNApplicationUtils.h"
 
 #import "PNPropertiesWindowController.h"
