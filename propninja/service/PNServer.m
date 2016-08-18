@@ -36,7 +36,7 @@
     NSPipe *writePipe = [[NSPipe alloc] init];
     NSPipe *readPipe = [[NSPipe alloc] init];
     
-    DDLogInfo(@"pathForLogFolder: %@", [PNServiceUtils pathForLogFolder]);
+    DDLogVerbose(@"log folder: %@", [PNServiceUtils pathForLogFolder]);
     
     self.task = [[NSTask alloc] init];
     [self.task setLaunchPath: [PNServiceUtils pathForStandardInputOutputServer]];
