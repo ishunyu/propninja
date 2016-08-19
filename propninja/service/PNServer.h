@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PNPropertyFileInfoConfig.h"
+
 @interface PNServer : NSObject
 - (void)startInBackgroundWithCallback: (void (^)(BOOL)) callback;
+- (BOOL)index:(PNPropertyFileInfoConfig *)pFileInfoConfig;
 - (void)stop;
 
 - (NSDictionary *)sendRequest:(NSDictionary *)dict;
