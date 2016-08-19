@@ -1,5 +1,5 @@
 //
-//  PNStandardInputOutputPropertiesService.h
+//  PNService.h
 //  propninja
 //
 //  Created by Shun Yu on 8/7/16.
@@ -14,7 +14,6 @@
 @interface PNService : NSObject
 @property (strong, nonatomic, readonly) PNPropertyFileInfoConfig *pFilesConfig;
 
-- (void)index;
 - (NSArray *)searchProperties:(NSString *)search;
 - (void)setProperty:(PNProperty *)property;
 

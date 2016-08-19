@@ -14,9 +14,9 @@
 #import "PNServer.h"
 
 @interface PNServer()
+@property (strong, nonatomic) NSTask *task;
 @property (weak, nonatomic) NSFileHandle *writeFileHandle;
 @property (weak, nonatomic) NSFileHandle *readFileHandle;
-@property (strong, nonatomic) NSTask *task;
 @end
 
 @implementation PNServer
@@ -36,7 +36,7 @@
     NSPipe *writePipe = [[NSPipe alloc] init];
     NSPipe *readPipe = [[NSPipe alloc] init];
     
-    DDLogInfo(@"pathForLogFolder: %@", [PNServiceUtils pathForLogFolder]);
+    DDLogVerbose(@"log folder: %@", [PNServiceUtils pathForLogFolder]);
     
     self.task = [[NSTask alloc] init];
     [self.task setLaunchPath: [PNServiceUtils pathForStandardInputOutputServer]];
@@ -48,6 +48,13 @@
     [self.task launch];
     
     return [PNServiceUtils waitForServerReady:self.readFileHandle];
+}
+
+- (BOOL)index:(PNPropertyFileInfoConfig *)pFileInfoConfig
+{
+
+    NSDictionary *data = [self sendRequest:[PNServiceUtils dictForIndex:[pFileInfoConfig arrayOfPaths]]];
+    return [data[@"value"] boolValue];
 }
 
 - (void)stop

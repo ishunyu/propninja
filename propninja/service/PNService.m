@@ -1,5 +1,5 @@
 //
-//  PNStandardInputOutputPropertiesService.m
+//  PNService.m
 //  propninja
 //
 //  Created by Shun Yu on 8/7/16.
@@ -27,37 +27,29 @@
 {
     self = [super init];
     if (self) {
-        self.pFilesConfig = [[PNPropertyFileInfoConfig alloc] init];
-        self.pServer = [[PNServer alloc] init];
-        [self.pServer startInBackgroundWithCallback:^(BOOL success){
-            if (success){
+        PNPropertyFileInfoConfig *pFilesConfig = [[PNPropertyFileInfoConfig alloc] init];
+        PNServer *pServer = [[PNServer alloc] init];
+        
+        [pServer startInBackgroundWithCallback:^(BOOL success){
+            if (success && [pServer index:pFilesConfig]){
+                self.pFilesConfig = pFilesConfig;
+                self.pServer = pServer;
                 DDLogInfo(@"started");
-                [self index];
+                return;
             }
-            else{
-                DDLogError(@"start failed");
-            }
+            
+            DDLogError(@"start failed");
         }];
     }
     
     return self;
 }
 
-- (void)index
-{
-    NSDictionary *data = [self.pServer sendRequest:[PNServiceUtils dictForIndex:[self.pFilesConfig arrayOfPaths]]];
-    if ([data[@"value"] boolValue]) {
-        DDLogInfo(@"indexed");
-    }
-    else {
-        DDLogError(@"index failed");
-    }
-}
-
 - (NSArray *)searchProperties:(NSString *)search
 {
     NSDictionary *data = [self.pServer sendRequest:[PNServiceUtils dictForSearch:search]];
-    return [PNServiceUtils constructPropertiesFromSearchResult:data[@"value"] pFileInfoConfig:self.pFilesConfig];
+    return [PNServiceUtils constructPropertiesFromSearchResult:data[@"value"]
+                                               pFileInfoConfig:self.pFilesConfig];
 }
 
 - (void)setProperty:(PNProperty *)property
