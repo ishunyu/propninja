@@ -33,11 +33,9 @@ class PropertiesTest:
 
     def run(self):
         testProps = TestProperties(self.numOfProps)
-        for x in testProps:
-            print x
-
         self._write(testProps)
         props = self._read()
+        self._validate(testProps, props)
 
     def _write(self, obj):
         with open(self.testFilePath, "w") as f:
@@ -49,7 +47,14 @@ class PropertiesTest:
 
     def _validate(self, testProps, props):
         assert len(testProps) == len(props)
+        for testProp in testProps:
+            propKey, testPropValue = testProp
+            propValue = props[propKey]
 
+            if not testPropValue == propValue:
+                print "propKey", propKey
+                print "testPropValue", testPropValue
+                print "propValue", propValue
 
 def is_same(file_a, file_b):
     return filecmp.cmp(file_a, file_b, shallow=False)

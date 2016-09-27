@@ -61,8 +61,6 @@ class TestProperties:
         self.numOfProps = numOfPropsUpperBound
         self.probOfEqualSign = probOfEqualSign
 
-        # print "probOfEqualSign:", self.probOfEqualSign
-
     def _gen(self):
         props = []
         index = {}
@@ -85,7 +83,7 @@ class TestProperties:
         return (key, value, delimiter)
 
     def _genKey(self):
-        return randWord(VALID_CHARS_FOR_PROPERTY_KEY, randLength(50))
+        return randWord(VALID_CHARS_FOR_PROPERTY_KEY, randLength(49) + 1)
     
     def _genValue(self):
         length = randLength(100)

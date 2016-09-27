@@ -140,7 +140,7 @@ class Property(object):
         if seenKey:
           return i
         else:
-          raise Exception(line)
+          raise Exception("No key: \"" + line + "\"")
       elif x in [' ', '\t']:
         if seenKey:
           return i
