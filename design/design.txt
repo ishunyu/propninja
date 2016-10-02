@@ -37,6 +37,17 @@ Technical Design
 		Python Beautiful Properties Library
 			Read properties
 				Retain formatting while reading
+			Parsing
+				Details
+					Parses the properties, and return a data structure with the pieces that make up the property
+						- Whitespace Before Key
+						- Key
+						- Whitespace Before Separator
+						- separator
+						- Element[]
+							- Whitespace before element
+							- Element
+
 			Testing
 				Properties
 					Correctness
