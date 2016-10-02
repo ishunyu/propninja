@@ -65,29 +65,21 @@ def parse(r):
     return root
 
 def _parse_properties_item(r):
+    cs = []
     while r.has_next():
         t, x = _parse_item(r)
         if t is T_DATA:
+            if len(cs) > 0:
+                yield Comment(cs)
+                cs = []
             yield Property(x[0], x[1], x[2], x[3], x[4])
         elif t is T_NON_DATA:
-            cs = [x]
-            while True:
-                if not r.has_next():
-                    yield Comment(cs)
-                    break
-
-                _t, _x = _parse_item(r)
-                if _t is T_DATA:
-                    yield Comment(cs)
-                    yield Property(_x[0], _x[1], _x[2], _x[3], _x[4])
-                    break
-                elif _t is T_NON_DATA:
-                    cs.append(_x)
-                else:
-                    raise Exception("Invalid condition. t:%s, x: %s, _t:%s, _x: %s" % (t, x, _t, _x))
+            cs.append(x)
         else:
             raise Exception("Invalid condition. t:%s, x: %s" % (t, x)) 
 
+    if len(cs) > 0:
+        yield Comment(cs)
 
 def _parse_item(r):
     line = r.next()
@@ -132,18 +124,10 @@ def _parse_item(r):
                 assigner = i
                 wsElement = i
                 element = i
-            elif key >= 0:
-                pass
             elif key < 0:
                 key = i
         elif ctype == CTYPE_WHITESPACE:
-            if element >= 0:
-                pass
-            elif wsElement >= 0:
-                pass
-            elif assigner >= 0:
-                pass
-            elif wsAssigner >= 0:
+            if wsAssigner >= 0:
                 pass
             elif key >= 0:
                 wsAssigner = i
