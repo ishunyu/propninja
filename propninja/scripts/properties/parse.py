@@ -18,6 +18,7 @@ key
 key value
 key:value
 key=value
+key = value
 key=v\
 alue
 key=v\
@@ -38,8 +39,8 @@ T_NON_DATA = 1
 
 CTYPE_CHAR = 0
 CTYPE_WHITESPACE = 1
-CTYPE_COMMENT_STARTER = 2
-CTYPE_ASSIGNER = 3
+CTYPE_ASSIGNER = 2
+CTYPE_COMMENT_STARTER = 3
 
 C_ESCAPE = "\\"
 
@@ -49,53 +50,56 @@ A_COMMENT_STARTERS = ["#", "!"]
 
 def parse(r):
     root = None
-    prev = None
+    curr = None
 
-    while r.has_next():
-        block = _parse_block(r)
-        if block:
-            if root is None:
-                root = block
+    for item in _parse_properties_item(r):        
+        if root is None:
+            root = item
 
-            if prev:
-                prev.next = block
+        if curr:
+            curr.next = item
 
-            block.prev = prev
-            prev = block
+        item.prev = curr
+        curr = item
 
     return root
 
-def _parse_block(r):
-    t, x = _parse_item(r)
-    if t is T_DATA:
-        yield x
-    elif t is T_NON_DATA:
-        cs = [x]
-        while True:
-            _t, _x = _parse_item(r)
-            if _t is T_DATA:
-                yield Comment(cs)
-                yield _x
-            elif _t is T_NON_DATA:
-                cs.append(_x)
-            else:
-                raise Exception("Invalid condition. t:%s, x: %s, _t:%s, _x: %s" % (t, x, _t, _x)) 
-    else:
-        raise Exception("Invalid condition. t:%s, x: %s" % (t, x)) 
+def _parse_properties_item(r):
+    while r.has_next():
+        t, x = _parse_item(r)
+        if t is T_DATA:
+            yield Property(x[0], x[1], x[2], x[3], x[4])
+        elif t is T_NON_DATA:
+            cs = [x]
+            while True:
+                if not r.has_next():
+                    yield Comment(cs)
+                    break
+
+                _t, _x = _parse_item(r)
+                if _t is T_DATA:
+                    yield Comment(cs)
+                    yield Property(_x[0], _x[1], _x[2], _x[3], _x[4])
+                    break
+                elif _t is T_NON_DATA:
+                    cs.append(_x)
+                else:
+                    raise Exception("Invalid condition. t:%s, x: %s, _t:%s, _x: %s" % (t, x, _t, _x))
+        else:
+            raise Exception("Invalid condition. t:%s, x: %s" % (t, x)) 
 
 
 def _parse_item(r):
     line = r.next()
-    begin = r.where()
-
+    
     if not line:
         return (T_NON_DATA, line)
     
     key = -1
-    wsAssignerStart = -1
+    wsAssigner = -1
     assigner = -1
-    wsElementStart -1
-    elementStart = -1
+    wsElement = -1
+    element = -1
 
     escape = False
 
@@ -103,6 +107,7 @@ def _parse_item(r):
         ctype = None
         if escape:
             ctype = CTYPE_CHAR
+            escape = False
         elif c == C_ESCAPE:
             escape = True
             continue
@@ -110,52 +115,85 @@ def _parse_item(r):
             ctype = CTYPE_WHITESPACE
         elif c in A_COMMENT_STARTERS:
             ctype = CTYPE_COMMENT_STARTER
-        elif c in A_ASSIGNERS and not assigner >= 0:
+        elif c in A_ASSIGNERS and assigner < 0:
             ctype = CTYPE_ASSIGNER
         else:
             ctype = CTYPE_CHAR
 
-        if ctype == CTYPE_WHITESPACE:
-            if elementStart >= 0:
+        if ctype == CTYPE_CHAR:
+            if element >= 0:
+                pass
+            elif wsElement >= 0:
+                element = i
+            elif assigner >= 0:
+                wsElement = i
+                element = i
+            elif wsAssigner >= 0:
+                assigner = i
+                wsElement = i
+                element = i
+            elif key >= 0:
+                pass
+            elif key < 0:
+                key = i
+        elif ctype == CTYPE_WHITESPACE:
+            if element >= 0:
+                pass
+            elif wsElement >= 0:
                 pass
             elif assigner >= 0:
                 pass
-            elif keyEnd:
+            elif wsAssigner >= 0:
                 pass
-            elif keyStart:
-                keyEnd = True
+            elif key >= 0:
+                wsAssigner = i
         elif ctype == CTYPE_COMMENT_STARTER:
-            if not keyStart:
+            if key < 0:
                 return (T_NON_DATA, line)
         elif ctype == CTYPE_ASSIGNER:
-            if elementStart:
-                pass
-            elif assigner:
-                elementStart = True
-            elif keyEnd:
-                assigner = True
-            elif keyStart:
-                keyEnd = True
+            assigner = i
+            wsElement = i + 1
+            if wsAssigner < 0:
+                wsAssigner = i
+            if key < 0:
+                key = i
+        else:
+            raise Exception("Unknown type: %s" % (ctype))
 
+    elements = [[line[wsElement:element], line[element:]]]
+    data = (
+        line[:key],
+        line[key:wsAssigner],
+        line[wsAssigner:assigner],
+        line[assigner:wsElement],
+        elements
+    )
 
-def _parse_multiline_property(r):
-    start = r.where()
+    _parse_multiline(r, elements, escape)
 
-    while r.has_next():
-        next_line = r.peek()
-        next_line = clean(next_line)
+    return (T_DATA, data)
 
-        if _is_whitespace_or_comments(next_line):
-            break
+def _parse_multiline(r, elements, escape):
+    while escape and r.has_next():
+        line = r.next()
+        escape = False
 
-        r.next() # advance because it's going to be part of this property
-        line = next_line # next_line becomes current line
-            
-        # depending on what the next line is, we will continue to accumulate this property
-        if _is_multiline_property(line):  
-            continue
+        ctype = None
+        element = -1
+        for i, c in enumerate(line):
+            if escape:
+                ctype = CTYPE_CHAR
+                escape = False
+            elif c == C_ESCAPE:
+                escape = True
+                continue
+            elif c in A_WHITESPACE:
+                ctype = CTYPE_WHITESPACE
+            else:
+                ctype = CTYPE_CHAR
 
-        # or skip
-        break
+            if ctype == CTYPE_CHAR and element < 0:
+                element = i
 
-    return Property(r[start:r.where()+1])
+        elements.append([line[:element], line[element:]])
+ 

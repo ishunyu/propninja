@@ -19,6 +19,23 @@ from test_properties import TestProperties
 print "TEST_TMP_FOLDER: " + TEST_TMP_FOLDER
 
 class PropertiesTest:
+    def __init__(self, testFilePath):
+        self.testFilePath = testFilePath
+        self.tmpFilePath = os.path.join(TEST_TMP_FOLDER, "tmp.properties")
+
+    def run(self):
+        props = self._read()
+        self._write(props)
+
+    def _read(self):
+        with open(self.testFilePath, "r") as f:
+            return Properties(f)
+
+    def _write(self, obj):
+        with open(self.tmpFilePath, "w") as f:
+            f.write(str(obj))
+
+class RandomPropertiesTest:
     def __init__(self, testFileName="test.properties", minNumOfProps=10, maxNumOfProps=200):
         self.testFilePath = os.path.join(TEST_TMP_FOLDER, testFileName)
         self.numOfProps = random.randint(minNumOfProps, maxNumOfProps)
@@ -60,4 +77,4 @@ def is_same(file_a, file_b):
     return filecmp.cmp(file_a, file_b, shallow=False)
     
 if __name__ == '__main__':
-    PropertiesTest().run()
+    PropertiesTest("tmp/test/a.properties").run()

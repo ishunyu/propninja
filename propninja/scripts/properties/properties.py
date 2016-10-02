@@ -11,25 +11,25 @@ class Iterator(object):
         return self
 
     def next(self):
-        if not self.curr:
-            raise StopIteration()
-
-        old = self.curr
-        self.curr = self.curr.next
-        return old
+        while self.curr:
+            tmp = self.curr
+            self.curr = self.curr.next
+            if tmp.is_data():
+                return tmp
+        raise StopIteration()
 
 class Properties(object):
-    def __init__(self, propFile):
-        self.filename = propFile.name
-        self.root = parse.parse(Reader(File(propFile)))
+    def __init__(self, pFile):
+        self.filename = pFile.name
+        self.root = parse.parse(Reader(File(pFile)))
 
     def __iter__(self):
         return Iterator(self.root)
 
     def __getitem__(self, key):
-        entry = self._get(key)
-        if entry:
-            return entry.value()
+        item = self._get(key)
+        if item:
+            return item.value()
 
     def __setitem__(self, key, value):
         item = self._get(key)
@@ -37,25 +37,26 @@ class Properties(object):
             item.set(value)
 
     def __str__(self):
-        return "\n".join([str(entry) for entry in self])
+        return "\n".join([str(item) for item in self._all_items()])
 
     def __len__(self):
         length = 0
-        for entry in self:
-            if entry.data:
-                length = length + 1
+        for _ in self:
+            length = length + 1
 
         return length
 
+    def _all_items(self):
+        curr = self.root
+        while curr:
+            tmp = curr
+            curr = curr.next
+            yield tmp
+
     def keys(self):
-        keys = []
-        for p in self:
-            if p.data:
-                keys.append(p.key())
+        return [item.key() for item in self]
 
-        return keys
-
-    def _get(self, key):
+    def _get(self, k):
         for entry in self:
-            if entry.key() == key:
+            if entry.key() == k:
                 return entry
