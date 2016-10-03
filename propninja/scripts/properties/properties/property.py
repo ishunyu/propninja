@@ -69,7 +69,7 @@ class Property(PropertiesItem):
             self._nelement = NORMALIZED if _element == element else _element
             return _element
 
-        element = "".join([x[:-1] for x in elements[:-1]]) + elements[-1]
+        element = "".join([x[1][:-1] for x in elements[:-1]]) + elements[-1][1]
         self._nelement = self._normalize(element)
         return self._nelement
 

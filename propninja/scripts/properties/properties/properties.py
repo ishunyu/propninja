@@ -1,4 +1,3 @@
-import re
 from fileinput import File, Reader
 import parse
 

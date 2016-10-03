@@ -10,26 +10,6 @@ this complicated generator(yield) thing. Time will tell if this was a good idea.
 
 The result is a linked list of key/element data pairs and whitespace/comment 
 non-data blocks.
-
-Examples
-Below are all valid key/element data pairs. Pairs except for the first one are
-equivalent.
-key
-key value
-key:value
-key=value
-key = value
-key=v\
-alue
-key=v\
- alue
-key=v\
-    alue
-key=v\
-a\
-l\
-u\
-e
 """
 
 from property import Property, Comment
@@ -143,6 +123,23 @@ def _parse_item(r):
                 key = i
         else:
             raise Exception("Unknown type: %s" % (ctype))
+
+    if key < 0:
+        return (T_NON_DATA, line)
+
+    if wsAssigner < 0:
+        wsAssigner = len(line)
+        assigner = wsAssigner
+        wsElement = wsAssigner
+        element = wsAssigner
+    elif assigner < 0:
+        assigner = len(line)
+        wsElement = assigner
+        element = assigner
+    elif wsElement < 0:
+        raise Exception("wsElement should be assigner + 1. line: %s, key: %d, wsAssigner: %d, assigner: %d, wsElement: %d, element: %d." % (line, key, wsAssigner, assigner, wsElement, element))
+    elif element < 0:
+        element = len(line)
 
     elements = [[line[wsElement:element], line[element:]]]
     data = (

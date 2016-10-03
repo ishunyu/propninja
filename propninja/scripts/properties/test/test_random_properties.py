@@ -115,6 +115,45 @@ class TestProperties:
     def __str__(self):
         return "".join([d.join([k, v]) + "\n" for (k, v, d) in self.props])[:-1]
 
+
+class RandomPropertiesTest:
+    def __init__(self, testFileName="test.properties", minNumOfProps=10, maxNumOfProps=200):
+        self.testFilePath = os.path.join(TEST_TMP_FOLDER, testFileName)
+        self.numOfProps = random.randint(minNumOfProps, maxNumOfProps)
+
+        if not os.path.exists(TEST_TMP_FOLDER):
+            os.makedirs(TEST_TMP_FOLDER)
+            pass
+
+        if os.path.exists(self.testFilePath):
+            os.remove(self.testFilePath)
+            pass
+
+    def run(self):
+        testProps = TestProperties(self.numOfProps)
+        self._write(testProps)
+        props = self._read()
+        self._validate(testProps, props)
+
+    def _write(self, obj):
+        with open(self.testFilePath, "w") as f:
+            f.write(str(obj))
+
+    def _read(self):
+        with open(self.testFilePath, "r") as f:
+            return Properties(f)
+
+    def _validate(self, testProps, props):
+        assert len(testProps) == len(props)
+        for testProp in testProps:
+            propKey, testPropValue = testProp
+            propValue = props[propKey]
+
+            if not testPropValue == propValue:
+                print "propKey", propKey
+                print "testPropValue", testPropValue
+                print "propValue", propValue
+
 if __name__ == '__main__':
     testProps = TestProperties()
 
