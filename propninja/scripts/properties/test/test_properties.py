@@ -38,7 +38,7 @@ class TestProperties(unittest.TestCase):
             self.assertEqual(len(expected), len(props))
 
             for k, v in expected.iteritems():
-                self.assertEqual(v, props[k], "k: %s, v: %s, props[k]: %s" % (k, v, props[k]))
+                self.assertEqual(v, props[k], "k: '%s', v: '%s', props[k]: '%s'" % (k, v, props[k]))
 
             pfpath = os.path.join(TEST_TMP_DIR, f)
             write(pfpath, props)

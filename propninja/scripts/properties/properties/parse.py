@@ -82,7 +82,7 @@ def _parse_item(r):
             escape = False
         elif c == C_ESCAPE:
             escape = True
-            continue
+            ctype = CTYPE_CHAR
         elif c in A_WHITESPACE:
             ctype = CTYPE_WHITESPACE
         elif c in A_COMMENT_STARTERS:
@@ -152,6 +152,7 @@ def _parse_item(r):
 
     _parse_multiline(r, elements, escape)
 
+    print data
     return (T_DATA, data)
 
 def _parse_multiline(r, elements, escape):
@@ -169,12 +170,14 @@ def _parse_multiline(r, elements, escape):
                 escape = True
                 continue
             elif c in A_WHITESPACE:
-                ctype = CTYPE_WHITESPACE
+                continue
             else:
                 ctype = CTYPE_CHAR
 
             if ctype == CTYPE_CHAR and element < 0:
                 element = i
 
+        if element < 0:
+            element = len(line)
         elements.append([line[:element], line[element:]])
  
