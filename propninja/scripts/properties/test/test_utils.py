@@ -3,7 +3,7 @@ def is_same(file_a, file_b):
     return filecmp.cmp(file_a, file_b, shallow=False)
 
 def read(filepath):
-    from properties.properties import Properties
+    from properties import Properties
     with open(filepath, "r") as f:
         return Properties(f)
 

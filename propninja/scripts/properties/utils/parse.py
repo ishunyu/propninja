@@ -152,7 +152,6 @@ def _parse_item(r):
 
     _parse_multiline(r, elements, escape)
 
-    print data
     return (T_DATA, data)
 
 def _parse_multiline(r, elements, escape):

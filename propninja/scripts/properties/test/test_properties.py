@@ -17,9 +17,9 @@ import random
 import filecmp
 import unittest
 
-from properties.properties import Properties
+from properties import Properties
 from constants import *
-from utils import *
+from test_utils import *
 
 class TestProperties(unittest.TestCase):
     def setUp(self):

@@ -12,16 +12,17 @@ NSString *ERROR = @"PN_ERROR";
 long ERROR_INPUTSTREAM = 1;
 long ERROR_OUTPUTSTREAM = 2;
 
-NSString *DIR_SCRIPTS = @"scripts";
-NSString *DIR_TEMP = @"scripts/tmp";
+NSString *PATH_SCRIPTS = @"scripts";
+NSString *PATH_SERVER_LOG = @"scripts/server/tmp";
+NSString *PATH_PYTHON_INDEXER = @"scripts/indexer";
+NSString *PATH_PYTHON_PROPERTIES = @"scripts/properties";
+NSString *PATH_PYTHON_SERVER = @"scripts/server";
+NSString *PATH_PYTHON_WHOOSH = @"scripts/whoosh";
+NSString *PATH_STANDARD_INPUT_OUTPUT_PROPERTIES_SERVER = @"scripts/server/standardinputoutputserver.py";
 
 NSString *FILE_TYPE_PYTHON = @"py";
 NSString *FILE_TYPE_LOCK = @"lock";
 NSString *FILE_TYPE_JSON = @"json";
-
-
-NSString *FILE_PROPERTIES_SERVER = @"server";
-NSString *FILE_STANDARD_INPUT_OUTPUT_PROPERTIES_SERVER = @"standardinputoutputserver";
 
 NSString *KEY_CONFIG_HOTKEY = @"CONFIG_HOTKEY";
 NSUInteger VALUE_CONFIG_HOTKEY_DEFAULT_MODIFIER_FLAGS = NSAlternateKeyMask | NSCommandKeyMask;

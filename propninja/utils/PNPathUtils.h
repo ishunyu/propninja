@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface PNPathUtils : NSObject
++ (NSString *)pathForResource: (NSString *)resource;
++ (NSString *)pathForRelativePath: (NSString *)relativePath;
 + (NSString *)autocomplete:(NSString *)path;
 @end

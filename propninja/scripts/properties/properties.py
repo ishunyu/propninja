@@ -1,6 +1,5 @@
-from fileinput import File, Reader
-import parse
-
+from utils.fileinput import File, Reader
+from utils import parse
 
 class Iterator(object):
     def __init__(self, p):

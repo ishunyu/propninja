@@ -72,7 +72,7 @@
 
 - (void)addEmptyPFileInfo
 {
-    [self setPropertyFileInfo:[[PNPropertyFileInfo alloc] initWithLabel:nil path:nil enabled:YES] index:[self count]];
+    [self setPFileInfo:[[PNPropertyFileInfo alloc] initWithLabel:nil path:nil enabled:YES] index:[self count]];
 }
 
 #pragma mark Index Based Operations
@@ -81,7 +81,7 @@
     return [self.pFileInfos objectAtIndex:index];
 }
 
-- (void)setPropertyFileInfo:(PNPropertyFileInfo *)fileInfo index:(long)index
+- (void)setPFileInfo:(PNPropertyFileInfo *)fileInfo index:(long)index
 {
     [self.pFileInfos setObject:fileInfo atIndexedSubscript:index];
 }
