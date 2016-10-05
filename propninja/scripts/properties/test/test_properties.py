@@ -25,6 +25,7 @@ class TestProperties(unittest.TestCase):
     def setUp(self):
         print "Working directory:", os.getcwd()
         print "TEST_RESOURCE_DIR:", TEST_RESOURCE_DIR
+        createDirectory(TEST_TMP_DIR)
         _, _, files = next(os.walk(TEST_RESOURCE_DIR))
         self.properties_files = [f for f in files if f.endswith(".properties")]
 
