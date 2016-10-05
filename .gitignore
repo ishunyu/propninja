@@ -15,6 +15,3 @@ profile
 
 # IntelliJ
 .idea
-
-*.pyc
-propninja/scripts/indexer/indexes

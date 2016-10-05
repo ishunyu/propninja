@@ -12,6 +12,7 @@
 #import "PNPropertyFileInfoConfig.h"
 
 @interface PNServiceUtils : NSObject
++ (NSDictionary *)environmentForServer;
 + (NSString *)pathForStandardInputOutputServer;
 + (NSString *)pathForLogFolder;
 

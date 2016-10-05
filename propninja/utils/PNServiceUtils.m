@@ -11,23 +11,29 @@
 #import "PNConstants.h"
 #import "NSString+Utilities.h"
 #import "PNSerializationUtils.h"
+#import "PNPathUtils.h"
 #import "PNStreamUtils.h"
 #import "PNServiceUtils.h"
 
 @implementation PNServiceUtils
 
 #pragma mark Server Paths
++ (NSDictionary *)environmentForServer;
+{
+    return @{
+             @"PYTHONPATH": [NSString stringWithFormat:@":%@",
+                             [PNPathUtils pathForRelativePath:PATH_SCRIPTS]]
+             };
+}
 
 + (NSString *)pathForStandardInputOutputServer
 {
-    return [[NSBundle mainBundle] pathForResource:FILE_STANDARD_INPUT_OUTPUT_PROPERTIES_SERVER
-                                           ofType:FILE_TYPE_PYTHON
-                                      inDirectory:DIR_SCRIPTS];
+    return [PNPathUtils pathForResource:PATH_STANDARD_INPUT_OUTPUT_PROPERTIES_SERVER];
 }
 
 + (NSString *)pathForLogFolder
 {
-    return [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:DIR_TEMP];
+    return [PNPathUtils pathForRelativePath:PATH_SERVER_LOG];
 }
 
 #pragma mark Requests

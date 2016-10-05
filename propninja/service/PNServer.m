@@ -7,6 +7,7 @@
 //
 
 #import "PNLoggerUtils.h"
+#import "PNConstants.h"
 #import "PNServiceUtils.h"
 #import "PNSerializationUtils.h"
 #import "PNStreamUtils.h"
@@ -36,11 +37,12 @@
     NSPipe *writePipe = [[NSPipe alloc] init];
     NSPipe *readPipe = [[NSPipe alloc] init];
     
-    DDLogVerbose(@"log folder: %@", [PNServiceUtils pathForLogFolder]);
+    DDLogInfo(@"log folder: %@", [PNServiceUtils pathForLogFolder]);
     
     self.task = [[NSTask alloc] init];
     [self.task setLaunchPath: [PNServiceUtils pathForStandardInputOutputServer]];
     [self.task setArguments: @[[PNServiceUtils pathForLogFolder]]];
+    [self.task setEnvironment:[PNServiceUtils environmentForServer]];
     [self.task setStandardInput:writePipe];
     [self.task setStandardOutput:readPipe];
     self.writeFileHandle = [writePipe fileHandleForWriting];
@@ -69,7 +71,10 @@
 - (NSDictionary *)sendRequest:(NSDictionary *)dict
 {
     NSData *dictData = [PNSerializationUtils serialize:dict];
-    NSData *data = [PNStreamUtils sendData:dictData writeFileHandle:self.writeFileHandle readFileHandle:self.readFileHandle];
+    NSData *data = [PNStreamUtils sendData:dictData
+                           writeFileHandle:self.writeFileHandle
+                            readFileHandle:self.readFileHandle];
+    
     return [PNSerializationUtils deserializeDictionary:data];
 }
 @end

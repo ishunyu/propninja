@@ -31,13 +31,19 @@
         PNServer *pServer = [[PNServer alloc] init];
         
         [pServer startInBackgroundWithCallback:^(BOOL success){
-            if (success && [pServer index:pFilesConfig]){
-                self.pFilesConfig = pFilesConfig;
+            if (success) {
                 self.pServer = pServer;
                 DDLogInfo(@"started");
+                
+                if ([pServer index:pFilesConfig]) {
+                    self.pFilesConfig = pFilesConfig;
+                    DDLogInfo(@"properties indexed");
+                }
+                
                 return;
             }
             
+            [pServer stop];
             DDLogError(@"start failed");
         }];
     }

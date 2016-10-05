@@ -12,6 +12,16 @@
 #import "PNPathUtils.h"
 
 @implementation PNPathUtils
++ (NSString *)pathForResource: (NSString *)resource
+{
+    return [[NSBundle mainBundle] pathForResource:resource ofType:nil];
+}
+
++ (NSString *)pathForRelativePath:(NSString *)relativePath
+{
+    return [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:relativePath];
+}
+
 + (NSString *)autocomplete:(NSString *)path
 {
     if (!path)

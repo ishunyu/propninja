@@ -5,4 +5,5 @@ Constants used for testing
 """
 from os import path
 
-TEST_TMP_FOLDER = path.join("tmp", "test")
+TEST_TMP_DIR = "test/tmp"
+TEST_RESOURCE_DIR = "test/resources"

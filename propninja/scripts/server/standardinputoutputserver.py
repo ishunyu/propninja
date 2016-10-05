@@ -10,8 +10,6 @@ import utils
 from properties.properties import Properties
 from indexer.indexer import PropertyIndexer
 
-# current_dir_path = os.path.dirname(os.path.realpath(__file__))
-
 sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 1)
 
 class RequestHandler:

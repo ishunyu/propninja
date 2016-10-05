@@ -100,13 +100,10 @@
 - (void)controlTextDidEndEditing:(NSNotification *)obj
 {
     if (obj.object == self.hotKeyTextField) {
-        DDLogInfo(@"hello");
-        
         DDHotKey *ddHotKey = self.hotKeyTextField.hotKey;
         [[PNHotKeyManager sharedInstance] setAndRegisterHotKeyWithModiferFlag:ddHotKey.modifierFlags keyCode:ddHotKey.keyCode];
     }
-    
-    if (obj.object == self.tableView) {
+    else if (obj.object == self.tableView) {
         long row = self.tableView.editedRow;
         long col = self.tableView.editedColumn;
         
@@ -120,7 +117,7 @@
         
         switch (col) {
             case 0:
-                enabled = [self.tableView.cell boolValue];
+                enabled = self.tableView.selectedCell.state == NSOnState;
                 break;
                 
             case 1:
