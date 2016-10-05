@@ -23,17 +23,17 @@ from utils import *
 
 class TestProperties(unittest.TestCase):
     def setUp(self):
-        print "cwd:", os.getcwd()
+        print "Working directory:", os.getcwd()
         print "TEST_RESOURCE_DIR:", TEST_RESOURCE_DIR
-        print "isdir:", os.path.isdir(TEST_RESOURCE_DIR)
         _, _, files = next(os.walk(TEST_RESOURCE_DIR))
         self.properties_files = [f for f in files if f.endswith(".properties")]
 
     def test_properties(self):
         for f in self.properties_files:
             fpath = os.path.join(TEST_RESOURCE_DIR, f)
+            epath = fpath + ".expected"
             props = read(fpath)
-            expected = readExpected(fpath + ".expected")
+            expected = readExpected(epath)
             
             self.assertEqual(len(expected), len(props))
 
