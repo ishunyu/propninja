@@ -38,7 +38,7 @@
     for (PNPropertyFileInfo *propertyFile in self.pFileInfos)
         dict[propertyFile.absolutePath == nil ? @"" : propertyFile.absolutePath] = propertyFile;
     
-    self.absPathToPFileInfos =[NSDictionary dictionaryWithDictionary:dict];
+    self.absPathToPFileInfos = [NSDictionary dictionaryWithDictionary:dict];
 }
 
 #pragma mark Stuff

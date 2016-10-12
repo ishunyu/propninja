@@ -173,7 +173,7 @@
     PNPropertiesTableCellView *cell;
     cell = [self cellFromNotification:obj];
     
-    [(id<PNPropertiesTableViewDelegate>)self.delegate propertyDidChange:cell];
+    [(id<PNPropertiesTableViewDelegate>)self.delegate cellDidChange:cell];
 }
 
 #pragma mark KeyDown

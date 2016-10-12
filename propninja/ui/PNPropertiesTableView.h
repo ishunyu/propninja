@@ -24,8 +24,6 @@
 @protocol PNPropertiesTableViewDelegate <NSObject>
 
 @required
-- (void)propertyDidChange:(PNPropertiesTableCellView *)cell;
-- (void)refresh;
-- (void)resignTableView:(PNPropertiesTableView *)tableView;
+- (void)cellDidChange:(PNPropertiesTableCellView *)cell;
 
 @end

@@ -8,9 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PNPropertyUsageMetrics.h"
+
 @interface PNConfigManager : NSObject
+#pragma mark Properties Files Infos
 + (NSArray *)pFileInfos;
 + (void)savePFileInfosToUserDefaults:(NSArray* )propertyFileInfoArray;
+
+#pragma mark Property Usage
++ (PNPropertyUsageMetrics *) propertyUsage;
++ (void)save:(PNPropertyUsageMetrics *) propertyUsage;
+
+#pragma mark Hotkeys
 + (id)hotKey;
 + (void)setHotKey:(id)hotKey;
 @end

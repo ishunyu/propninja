@@ -7,15 +7,16 @@
 //
 
 #import "PNLoggerUtils.h"
+#import "NSString+Utilities.h"
 
-#import "PNPropertyFileInfoConfig.h"
 #import "PNService.h"
+#import "PNConfigManager.h"
+#import "PNProperty.h"
+#import "PNPropertyUsageMetrics.h"
 
 #import "PNPropertiesTableCellView.h"
 #import "PNPropertiesTableRowView.h"
 #import "PNPropertiesTableView.h"
-#import "PNProperty.h"
-
 #import "PNPropertiesWindowController.h"
 
 @interface PNPropertiesWindowController()
@@ -29,6 +30,8 @@
 @property (strong, nonatomic) PNService *service;
 @property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) NSArray *views;
+
+@property (strong, nonatomic) PNPropertyUsageMetrics *usage;
 
 @property (nonatomic) BOOL mouseDown;
 @property (nonatomic) NSPoint mouseDownOrigin;
@@ -44,9 +47,50 @@
     {
         self.appDelegate = appDelegate;
         self.service = [[PNService alloc] init];
+        self.usage = [PNConfigManager propertyUsage];
     }
     
     return self;
+}
+
+- (void)windowDidLoad
+{
+    [self updateSearchResults];
+}
+
+#pragma mark - NSWindowDelegate
+- (void)windowDidResignKey:(NSNotification *)notification
+{
+    [[NSApplication sharedApplication] hide:self];
+}
+
+- (void)windowWillClose:(NSNotification *)notification
+{
+    [self.service stop];
+    self.service = nil;
+}
+
+#pragma mark Search
+- (void)updateSearchResults
+{
+    NSString *searchString = [self.searchBox stringValue];
+    DDLogDebug(@"updateSearchResults searchString:\"%@\"", searchString);
+    
+    NSArray *data = [searchString isEmpty]
+    ? [self.service getProperties:[self.usage getTopVisitedProperties:10]]
+    : [self.service searchProperties:searchString];
+    
+    if (data)
+    {
+        self.data = data;
+        [self updateViews];
+    }
+}
+
+- (void)updateViews
+{
+    self.views = [self createTableCellViews:self.data];
+    [self.tableView reloadData];
 }
 
 - (NSArray *)createTableCellViews:(NSArray *)properties
@@ -82,37 +126,6 @@
     
     DDLogError(@"error creating %@", [PNPropertiesTableCellView class]);
     return nil;
-}
-
-- (void)refreshData
-{
-    self.views = [self createTableCellViews:self.data];
-    [self.tableView reloadData];
-}
-
-#pragma mark - NSWindowDelegate
-- (void)windowDidResignKey:(NSNotification *)notification
-{
-    [[NSApplication sharedApplication] hide:self];
-}
-
-- (void)windowWillClose:(NSNotification *)notification
-{
-    [self.service stop];
-    self.service = nil;
-}
-
-#pragma mark Search
-- (void)search
-{
-    NSString *search = [self.searchBox stringValue];
-    NSArray *data = [self.service searchProperties:search];
-    
-    if (data)
-    {
-        self.data = data;
-        [self refreshData];
-    }
 }
 
 #pragma mark Commands
@@ -183,7 +196,7 @@
 {
     if (notification.object == self.searchBox)
     {
-        [self search];
+        [self updateSearchResults];
         return;
     }
 }
@@ -208,50 +221,44 @@
 }
 
 #pragma mark PNPropertiesTableViewDelegate
-- (void)propertyDidChange:(PNPropertiesTableCellView *)cell
+- (void)cellDidChange:(PNPropertiesTableCellView *)cell
 {
-    DDLogVerbose(@"propertyDidChange index:%ld", cell.index);
+    DDLogVerbose(@"cellDidChange index:%ld", cell.index);
     
-    PNProperty *oldProperty = (PNProperty *)self.data[cell.index];
-    NSString *oldValue = oldProperty.value;
+    PNProperty *oldProp = (PNProperty *)self.data[cell.index];
+    NSString *oldValue = oldProp.value;
     NSString *newValue = cell.valueField.stringValue;
     
     if (![oldValue isEqualToString:newValue])
     {
-        PNProperty *newProperty = [[PNProperty alloc] initWithProperty:oldProperty value:newValue];
+        PNProperty *newProp = [[PNProperty alloc] initWithProperty:oldProp value:newValue];
         
-        [self.service setProperty:newProperty];
-        [self search];
-        
-        for (NSUInteger i = 0; i <= self.data.count; i++)
+        [self.service setProperty:newProp];
+        [self.usage edited:newProp];
+        [self updateSearchResults];
+        if(![self selectCellWithProperty:newProp])
         {
-            PNProperty *property = self.data[i];
-            
-            if ([property.pFileInfo isEqualTo:oldProperty.pFileInfo] && [property.key isEqualToString:oldProperty.key]) {
-                [self.window makeFirstResponder:self.tableView];
-                [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:i] byExtendingSelection:NO];
-                return;
-            }
+            [self.window makeFirstResponder:self.searchBox];
         }
-        
-        [self.window makeFirstResponder:self.searchBox];
     }
 }
 
-- (void)refresh
+- (BOOL)selectCellWithProperty:(PNProperty *)property
 {
-    DDLogVerbose(@"refresh");
+    for (NSUInteger i = 0; i <= self.data.count; i++)
+    {
+        PNProperty *propertyAtRow = self.data[i];
+        
+        if ([propertyAtRow.pFileInfo isEqualTo:property.pFileInfo]
+            && [propertyAtRow.key isEqualToString:property.key])
+        {
+            [self.window makeFirstResponder:self.tableView];
+            [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:i] byExtendingSelection:NO];
+            return YES;
+        }
+    }
     
-    [self refreshData];
-    [self.searchBox becomeFirstResponder];
-}
-
-- (void)resignTableView:(PNPropertiesTableView *)tableView;
-{
-    DDLogVerbose(@"resignTableView");
-    
-    [tableView resignFirstResponder];
-    [self.searchBox becomeFirstResponder];
+    return NO;
 }
 
 #pragma mark NSTableViewDelegate

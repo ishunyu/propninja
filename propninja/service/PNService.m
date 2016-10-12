@@ -63,6 +63,13 @@
     [self.pServer sendRequest:[PNServiceUtils dictForSet:property]];
 }
 
+- (NSArray *)getProperties:(NSArray *)properties
+{
+    NSDictionary *data = [self.pServer sendRequest:[PNServiceUtils dictForGet:properties]];
+    return [PNServiceUtils constructPropertiesFromSearchResult:data[@"value"]
+                                               pFileInfoConfig:self.pFilesConfig];
+}
+
 - (void) stop
 {
     [self.pServer stop];

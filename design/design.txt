@@ -33,6 +33,9 @@ Technical Design
 						Less overhead with starting new subprocesses every single session
 					Cons
 						More likely to lead to memory leak issue (is this an unnecessary concern though?)
+			Remember most recently edited properties
+				More recently edited weight more
+				Be able to clean up
 		Python Indexing Service
 		Python Beautiful Properties Library
 			Read properties

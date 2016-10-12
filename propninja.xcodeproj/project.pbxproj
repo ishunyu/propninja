@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC6A9CB21DB5DFFE00575318 /* PNPropertyUsageMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = CC01667F1DADFE4400AB3947 /* PNPropertyUsageMetrics.m */; };
 		E010EE701A8B057F00905498 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E010EE6B1A8B057F00905498 /* DDHotKeyCenter.m */; };
 		E010EE711A8B057F00905498 /* DDHotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E010EE6D1A8B057F00905498 /* DDHotKeyTextField.m */; };
 		E010EE721A8B057F00905498 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E010EE6F1A8B057F00905498 /* DDHotKeyUtilities.m */; };
@@ -70,6 +71,8 @@
 
 /* Begin PBXFileReference section */
 		03C26D2EBDA059266DAFBB98 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC01667E1DADFE4400AB3947 /* PNPropertyUsageMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPropertyUsageMetrics.h; sourceTree = "<group>"; };
+		CC01667F1DADFE4400AB3947 /* PNPropertyUsageMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPropertyUsageMetrics.m; sourceTree = "<group>"; };
 		DFFEFB50649EE02652AD5B6F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E010EE6A1A8B057F00905498 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyCenter.h; path = lib/DDHotKey/DDHotKeyCenter.h; sourceTree = "<group>"; };
 		E010EE6B1A8B057F00905498 /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyCenter.m; path = lib/DDHotKey/DDHotKeyCenter.m; sourceTree = "<group>"; };
@@ -387,6 +390,8 @@
 				E0567DC81A7DFC3B001AF187 /* PNPropertyFileInfo.m */,
 				E0567DBF1A7D6E4E001AF187 /* PNPropertyFileInfoConfig.h */,
 				E0567DC01A7D6E4E001AF187 /* PNPropertyFileInfoConfig.m */,
+				CC01667E1DADFE4400AB3947 /* PNPropertyUsageMetrics.h */,
+				CC01667F1DADFE4400AB3947 /* PNPropertyUsageMetrics.m */,
 				E0ED4A791AA1365000B877D9 /* PNConfigManager.h */,
 				E0ED4A7A1AA1365000B877D9 /* PNConfigManager.m */,
 			);
@@ -501,7 +506,7 @@
 		E09563951A3BA5E600DFC645 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = BN;
+				CLASSPREFIX = PN;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Workday;
 				TargetAttributes = {
@@ -594,6 +599,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC6A9CB21DB5DFFE00575318 /* PNPropertyUsageMetrics.m in Sources */,
 				E03A51E01A85998C00356D90 /* PNPropertiesTableCellView.m in Sources */,
 				E0BBA7631A47BE6C001D3DE1 /* NSWindow+canBecomeKeyWindow.m in Sources */,
 				E0BBA75C1A47BE6C001D3DE1 /* PNPropertiesWindowController.m in Sources */,
@@ -806,7 +812,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "propninja/propninjaTests-Info.plist";
+				INFOPLIST_FILE = "propninjaTests/propninjaTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.workday.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = propninjaTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/propninja.app/Contents/MacOS/propninja";

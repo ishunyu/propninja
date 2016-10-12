@@ -66,6 +66,13 @@
               @"value": property.value };
 }
 
++ (NSDictionary *)dictForGet:(NSArray *)properties
+{
+    return @{
+             @"type" : @"get",
+             @"value" : properties };
+}
+
 + (NSDictionary *)dictForStop
 {
     return @{ @"type": @"stop" };

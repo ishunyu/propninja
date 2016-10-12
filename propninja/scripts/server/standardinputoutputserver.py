@@ -25,14 +25,14 @@ class RequestHandler:
     key = req_obj["key"] if ("key" in req_obj.keys()) else None
     value = req_obj["value"] if ("value" in req_obj.keys()) else None
 
-    if cmd_type == "get":
-      return self.get(f, key, value)
-
     if cmd_type == "search":
       return self.search(key)
 
     if cmd_type == "set":
       return self.set(f, key, value)
+
+    if cmd_type == "get":
+      return self.get(value)
 
     if cmd_type == "status":
       return { "value": "ready" }
@@ -43,7 +43,18 @@ class RequestHandler:
     if cmd_type == "stop":
       self.server.stop()
 
-  def get(self, f, key, value):
+  def get(self, propertiesRequest):
+    ans = []
+    for r in propertiesRequest:
+      p = self.getProperty(r[0], r[1])
+      if p:
+        ans.append(p)
+
+    return {
+      "value": ans
+    }
+
+  def getProperty(self, f, key):
     property_files = self.server.property_files
 
     if not f in property_files.keys():
@@ -54,11 +65,7 @@ class RequestHandler:
     if not key in property_file.keys():
       return
 
-    return {
-      "file": f,
-      "key": key,
-      "value": property_files[f][key]
-    }
+    return [f, key, property_file[key]]
 
   def search(self, key):
     search_result = self.server.indexer.search(key)

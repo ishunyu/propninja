@@ -21,6 +21,7 @@
 + (NSDictionary *)dictForIndex:(NSArray *)config;
 + (NSDictionary *)dictForSearch:(NSString *)word;
 + (NSDictionary *)dictForSet:(PNProperty *)property;
++ (NSDictionary *)dictForGet:(NSArray *)properties;
 + (NSDictionary *)dictForStop;
 
 + (NSArray *)constructPropertiesFromSearchResult:(NSArray *)results pFileInfoConfig:(PNPropertyFileInfoConfig *)pFileInfoConfig;

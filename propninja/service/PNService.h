@@ -17,5 +17,6 @@
 - (NSArray *)searchProperties:(NSString *)search;
 - (void)setProperty:(PNProperty *)property;
 
+- (NSArray *)getProperties:(NSArray *)properties;
 - (void) stop;
 @end
