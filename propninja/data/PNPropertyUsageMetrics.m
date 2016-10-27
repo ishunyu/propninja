@@ -143,8 +143,9 @@
                     [tally increment];
                 }
                 
+                NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:nil ascending:NO selector:@selector(compare:)];
                 NSMutableArray *tallies = [[NSMutableArray alloc] initWithArray:[index allValues]];
-                [tallies sortUsingSelector:@selector(compare:)];
+                [tallies sortUsingDescriptors:@[sortDescriptor]];
                 
                 NSMutableArray *result = [[NSMutableArray alloc] init];
                 for (PNPropertyUsageMetricsItemTally *tally in tallies) {
