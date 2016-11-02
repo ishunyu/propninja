@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC6A9CB21DB5DFFE00575318 /* PNPropertyUsageMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = CC01667F1DADFE4400AB3947 /* PNPropertyUsageMetrics.m */; };
+		CCFA33331DBDDFE9000AC86E /* PNTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFA33321DBDDFE9000AC86E /* PNTextField.m */; };
 		E010EE701A8B057F00905498 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E010EE6B1A8B057F00905498 /* DDHotKeyCenter.m */; };
 		E010EE711A8B057F00905498 /* DDHotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E010EE6D1A8B057F00905498 /* DDHotKeyTextField.m */; };
 		E010EE721A8B057F00905498 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E010EE6F1A8B057F00905498 /* DDHotKeyUtilities.m */; };
@@ -73,6 +74,8 @@
 		03C26D2EBDA059266DAFBB98 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC01667E1DADFE4400AB3947 /* PNPropertyUsageMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPropertyUsageMetrics.h; sourceTree = "<group>"; };
 		CC01667F1DADFE4400AB3947 /* PNPropertyUsageMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPropertyUsageMetrics.m; sourceTree = "<group>"; };
+		CCFA33311DBDDFE9000AC86E /* PNTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNTextField.h; sourceTree = "<group>"; };
+		CCFA33321DBDDFE9000AC86E /* PNTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNTextField.m; sourceTree = "<group>"; };
 		DFFEFB50649EE02652AD5B6F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E010EE6A1A8B057F00905498 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyCenter.h; path = lib/DDHotKey/DDHotKeyCenter.h; sourceTree = "<group>"; };
 		E010EE6B1A8B057F00905498 /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyCenter.m; path = lib/DDHotKey/DDHotKeyCenter.m; sourceTree = "<group>"; };
@@ -412,6 +415,8 @@
 		E0BBA74D1A47BE6C001D3DE1 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				E0BBA7501A47BE6C001D3DE1 /* NSWindow+canBecomeKeyWindow.h */,
+				E0BBA7511A47BE6C001D3DE1 /* NSWindow+canBecomeKeyWindow.m */,
 				E03A51DE1A85998C00356D90 /* PNPropertiesTableCellView.h */,
 				E03A51DF1A85998C00356D90 /* PNPropertiesTableCellView.m */,
 				E0FFD1861A85C0F100F1713C /* PNPropertiesTableRowView.h */,
@@ -422,8 +427,8 @@
 				E04C67631A5A6214006861F2 /* PNTableHeaderCell.m */,
 				E0567DCA1A7E13C6001AF187 /* PNTableView.h */,
 				E0567DCB1A7E13C6001AF187 /* PNTableView.m */,
-				E0BBA7501A47BE6C001D3DE1 /* NSWindow+canBecomeKeyWindow.h */,
-				E0BBA7511A47BE6C001D3DE1 /* NSWindow+canBecomeKeyWindow.m */,
+				CCFA33311DBDDFE9000AC86E /* PNTextField.h */,
+				CCFA33321DBDDFE9000AC86E /* PNTextField.m */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -631,6 +636,7 @@
 				E0567DC91A7DFC3B001AF187 /* PNPropertyFileInfo.m in Sources */,
 				E07E2A371A48B150009E2AB6 /* PNPreferencesWindowController.m in Sources */,
 				E04C675B1A588500006861F2 /* PNSerializationUtils.m in Sources */,
+				CCFA33331DBDDFE9000AC86E /* PNTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

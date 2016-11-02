@@ -9,13 +9,14 @@
 #import <Cocoa/Cocoa.h>
 
 #import "PNProperty.h"
+#import "PNTextField.h"
 
 @interface PNPropertiesTableCellView : NSTableCellView
 @property (nonatomic) NSUInteger index;
 
 @property (weak) IBOutlet NSTextField *keyLabel;
 @property (weak) IBOutlet NSTextField *fileLabel;
-@property (weak) IBOutlet NSTextField *valueField;
+@property (weak) IBOutlet PNTextField *valueField;
 
-- (void)populate:(id)delegate index:(NSUInteger)index property:(PNProperty *)property propertyFileLabel:(NSString *)label;
+- (void)populate:(id)delegate index:(NSUInteger)index property:(PNProperty *)property;
 @end

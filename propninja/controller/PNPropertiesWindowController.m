@@ -61,7 +61,7 @@
 #pragma mark - NSWindowDelegate
 - (void)windowDidResignKey:(NSNotification *)notification
 {
-    [[NSApplication sharedApplication] hide:self];
+    //[[NSApplication sharedApplication] hide:self];
 }
 
 - (void)windowWillClose:(NSNotification *)notification
@@ -110,9 +110,8 @@
         PNProperty *property = properties[i];
         PNPropertiesTableCellView *cellView = [self createTableCellViewFromNib];
         
-        [cellView populate:self.tableView index:i
-                  property:property
-         propertyFileLabel:property.pFileInfo.label];
+        
+        [cellView populate:self.tableView index:i property:property];
         [cellViews addObject:cellView];
     }
     
@@ -199,7 +198,6 @@
 }
 
 #pragma mark NSTextFieldDelegate
-
 - (void)controlTextDidChange:(NSNotification *)notification
 {
     if (notification.object == self.searchBox)
@@ -244,14 +242,14 @@
         [self.service setProperty:newProp];
         [self.usage edited:newProp];
         [self updateSearchResults];
-        if(![self selectCellWithProperty:newProp])
+        if(![self highlightCellWithProperty:newProp])
         {
             [self.window makeFirstResponder:self.searchBox];
         }
     }
 }
 
-- (BOOL)selectCellWithProperty:(PNProperty *)property
+- (BOOL)highlightCellWithProperty:(PNProperty *)property
 {
     for (NSUInteger i = 0; i <= self.data.count; i++)
     {
@@ -281,6 +279,12 @@
 - (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row
 {
     return [[PNPropertiesTableRowView alloc] init];
+}
+
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
+{
+    NSView *cell = self.views[row];
+    return cell.bounds.size.height;
 }
 
 #pragma mark NSTableViewDataSource

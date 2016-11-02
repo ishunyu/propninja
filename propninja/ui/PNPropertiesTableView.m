@@ -142,20 +142,9 @@
 
 
 #pragma mark NSTextFieldDelegate
+// This is for the valueField in PNPropertiesTableCellView
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector
 {
-    if (commandSelector == @selector(moveDown:))
-    {
-        [self moveDown];
-        return YES;
-    }
-    
-    if (commandSelector == @selector(moveUp:))
-    {
-        [self moveUp];
-        return YES;
-    }
-    
     if (commandSelector == @selector(cancelOperation:))
     {
         [self selectRowIndexes:[NSIndexSet indexSetWithIndex:[self cellFromFirstResponder].index] byExtendingSelection:NO];
@@ -166,9 +155,14 @@
     return NO;
 }
 
+- (void)controlTextDidBeginEditing:(NSNotification *)obj
+{
+    DDLogInfo(@"controlTextDidBeginEditing:");
+}
+
 -(void)controlTextDidEndEditing:(NSNotification *)obj
 {
-    DDLogVerbose(@"controlTextDidEndEditing");
+    DDLogInfo(@"controlTextDidEndEditing");
     
     PNPropertiesTableCellView *cell;
     cell = [self cellFromNotification:obj];
@@ -206,7 +200,7 @@
         return;
     }
     
-    DDLogDebug(@"keyDown keyCode: %d modiferFlags: %lu", theEvent.keyCode, modifierFlags);
+    DDLogInfo(@"keyDown keyCode: %d modiferFlags: %lu", theEvent.keyCode, modifierFlags);
     [super keyDown:theEvent];
 }
 
