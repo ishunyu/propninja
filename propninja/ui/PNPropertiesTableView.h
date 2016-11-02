@@ -13,7 +13,8 @@
 
 @interface PNPropertiesTableView : PNTableView
 <
-    NSTextFieldDelegate
+    NSTextFieldDelegate,
+    PNPropertiesTableCellViewDelegate
 >
 
 - (void)selectNone;

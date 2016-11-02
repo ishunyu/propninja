@@ -32,12 +32,6 @@
 }
 
 #pragma mark Data
-- (PNPropertiesTableCellView *)cellForRow:(NSInteger)row
-{
-    return (PNPropertiesTableCellView *)[self.delegate tableView:self
-                                              viewForTableColumn:self.tableColumns[0]
-                                                             row:row];
-}
 
 - (PNPropertiesTableCellView *)cellFromNotification:(NSNotification *)obj
 {
@@ -65,6 +59,10 @@
 }
 
 #pragma mark Row Selection
+/*
+ Scrolls to the selected rows.
+ Make sure to also let indexes.count == 0 through to allow deselect from any row.
+ */
 -(void)selectRowIndexes:(NSIndexSet *)indexes byExtendingSelection:(BOOL)extend
 {
     NSUInteger index = indexes.firstIndex;
@@ -147,17 +145,14 @@
 {
     if (commandSelector == @selector(cancelOperation:))
     {
-        [self selectRowIndexes:[NSIndexSet indexSetWithIndex:[self cellFromFirstResponder].index] byExtendingSelection:NO];
+        PNPropertiesTableCellView *cellView = [self cellFromFirstResponder];
+        [cellView deselect];
+        [self selectRowIndexes:[NSIndexSet indexSetWithIndex:cellView.index] byExtendingSelection:NO];
     }
     
     DDLogDebug(@"doCommandBySelector %@", NSStringFromSelector(commandSelector));
     
     return NO;
-}
-
-- (void)controlTextDidBeginEditing:(NSNotification *)obj
-{
-    DDLogInfo(@"controlTextDidBeginEditing:");
 }
 
 -(void)controlTextDidEndEditing:(NSNotification *)obj
@@ -168,6 +163,12 @@
     cell = [self cellFromNotification:obj];
     
     [(id<PNPropertiesTableViewDelegate>)self.delegate cellDidChange:cell];
+}
+
+#pragma mark PNPropertiesTableCellViewDelegate
+- (void)cellHeightDidChange:(PNPropertiesTableCellView *)cellView
+{
+    [self noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndex:cellView.index]];
 }
 
 #pragma mark KeyDown

@@ -8,6 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PNTextField : NSTextField
+@class PNTextField;
 
+@protocol PNTextFieldDelegate <NSObject>
+- (void)becameFirstResponder:(PNTextField *)textField;
+@end
+
+@interface PNTextField : NSTextField
+@property (strong, nonatomic) id<PNTextFieldDelegate> myDelegate;
 @end

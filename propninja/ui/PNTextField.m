@@ -13,8 +13,11 @@
 
 - (BOOL)becomeFirstResponder
 {
-    BOOL status = [super becomeFirstResponder];
-    DDLogInfo(@"becomeFirstResponder status: %d", status);
-    return status;
+    if ([super becomeFirstResponder]) {
+        [self.myDelegate becameFirstResponder:self];
+        return YES;
+    }
+    return NO;
 }
+
 @end

@@ -110,7 +110,6 @@
         PNProperty *property = properties[i];
         PNPropertiesTableCellView *cellView = [self createTableCellViewFromNib];
         
-        
         [cellView populate:self.tableView index:i property:property];
         [cellViews addObject:cellView];
     }
@@ -283,9 +282,11 @@
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
 {
-    NSView *cell = self.views[row];
+    PNPropertiesTableCellView *cell = self.views[row];
     return cell.bounds.size.height;
 }
+
+
 
 #pragma mark NSTableViewDataSource
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
