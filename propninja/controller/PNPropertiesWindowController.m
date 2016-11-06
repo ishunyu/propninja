@@ -76,14 +76,22 @@
     NSString *searchString = [self.searchBox stringValue];
     DDLogDebug(@"updateSearchResults searchString:\"%@\"", searchString);
     
-    NSArray *data = [searchString isEmpty]
-    ? [self.service getProperties:[self.usage getTopVisitedProperties:10]]
-    : [self.service searchProperties:searchString];
-    
-    if (data)
+    void(^callback)(NSArray*) = ^(NSArray* data)
     {
-        self.data = data;
-        [self updateViews];
+        if (data) {
+            self.data = data;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self updateViews];
+            });
+        }
+    };
+    
+    if([searchString isEmpty])
+    {
+        [self.service getProperties:[self.usage getTopVisitedProperties:10] callback:callback];
+    }
+    else {
+        [self.service searchProperties:searchString callback:callback];
     }
 }
 

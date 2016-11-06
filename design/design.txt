@@ -15,6 +15,11 @@ Goal
 Technical Design
 	Front-End
 		Mac OS Cocoa Application
+		Extreme number of characters, what to do?
+			Give a bigger text box, instead of text line, to type in
+			Use alt+enter for newline
+			Allow scrolling if exceeding max boundary
+			Scrolling result lines behind the edit box should not affect the edit box
 	Back-End
 		Mac OS Cocoa Application
 			Starting the subprocess every single session vs having a long lived subprocess?
@@ -36,6 +41,11 @@ Technical Design
 			Remember most recently edited properties
 				More recently edited weight more
 				Be able to clean up
+			Transactions
+				View
+				Edit
+				System
+					Indexing
 		Python Indexing Service
 		Python Beautiful Properties Library
 			Read properties

@@ -19,6 +19,7 @@
 @interface PNService ()
 @property (strong, nonatomic, readwrite) PNPropertyFileInfoConfig *pFilesConfig;
 @property (strong, nonatomic) PNServer *pServer;
+@property (strong, nonatomic) dispatch_queue_t queue;
 @end
 
 @implementation PNService
@@ -27,52 +28,80 @@
 {
     self = [super init];
     if (self) {
-        PNPropertyFileInfoConfig *pFilesConfig = [[PNPropertyFileInfoConfig alloc] init];
-        PNServer *pServer = [[PNServer alloc] init];
-        
-        [pServer startInBackgroundWithCallback:^(BOOL success){
-            if (success) {
-                self.pServer = pServer;
-                DDLogInfo(@"started");
-                
-                if ([pServer index:pFilesConfig]) {
-                    self.pFilesConfig = pFilesConfig;
-                    DDLogInfo(@"properties indexed");
-                }
-                
-                return;
-            }
-            
-            [pServer stop];
-            DDLogError(@"start failed");
-        }];
+        _pServer = [[PNServer alloc] init];
+        _pFilesConfig = [[PNPropertyFileInfoConfig alloc] init];
+        _queue = dispatch_queue_create(NAME_QUEUE_PNSERVICE, nil);
+        [self _init];
     }
     
     return self;
 }
 
-- (NSArray *)searchProperties:(NSString *)search
+- (void)_init
 {
-    NSDictionary *data = [self.pServer sendRequest:[PNServiceUtils dictForSearch:search]];
-    return [PNServiceUtils constructPropertiesFromSearchResult:data[@"value"]
-                                               pFileInfoConfig:self.pFilesConfig];
+    [self _start];
+    [self _index];
+}
+
+- (void)_start
+{
+    [self _dispatch_async:
+     ^{
+         [self.pServer start];
+         DDLogInfo(@"started");
+     }];
+}
+
+- (void)_index
+{
+    [self _dispatch_async:
+     ^{
+         [self.pServer index:self.pFilesConfig];
+         DDLogInfo(@"properties indexed");
+     }];
+}
+
+- (void)getProperties:(NSArray *)properties callback:(void (^)(NSArray *))callback
+{
+    [self _dispatch_async:
+     ^{
+         NSDictionary *data = [self.pServer sendRequest:[PNServiceUtils dictForGet:properties]];
+         NSArray *result = [PNServiceUtils constructPropertiesFromSearchResult:data[@"value"]
+                                                               pFileInfoConfig:self.pFilesConfig];
+         callback(result);
+     }];
+}
+
+- (void)searchProperties:(NSString *)search callback:(void (^)(NSArray *))callback
+{
+    [self _dispatch_async:
+     ^{
+         NSDictionary *data = [self.pServer sendRequest:[PNServiceUtils dictForSearch:search]];
+         NSArray *result = [PNServiceUtils constructPropertiesFromSearchResult:data[@"value"]
+                                                               pFileInfoConfig:self.pFilesConfig];
+         callback(result);
+     }];
 }
 
 - (void)setProperty:(PNProperty *)property
 {
-    [self.pServer sendRequest:[PNServiceUtils dictForSet:property]];
-}
-
-- (NSArray *)getProperties:(NSArray *)properties
-{
-    NSDictionary *data = [self.pServer sendRequest:[PNServiceUtils dictForGet:properties]];
-    return [PNServiceUtils constructPropertiesFromSearchResult:data[@"value"]
-                                               pFileInfoConfig:self.pFilesConfig];
+    [self _dispatch_async:
+     ^{
+         [self.pServer sendRequest:[PNServiceUtils dictForSet:property]];
+     }];
 }
 
 - (void) stop
 {
-    [self.pServer stop];
-    DDLogInfo(@"stopped");
+    [self _dispatch_async:
+     ^{
+         [self.pServer stop];
+         DDLogInfo(@"stopped");
+     }];
+}
+
+- (void)_dispatch_async:(void(^)())block
+{
+    dispatch_async(self.queue, block);
 }
 @end

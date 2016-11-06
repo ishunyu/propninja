@@ -24,6 +24,8 @@ NSString *FILE_TYPE_PYTHON = @"py";
 NSString *FILE_TYPE_LOCK = @"lock";
 NSString *FILE_TYPE_JSON = @"json";
 
+const char *NAME_QUEUE_PNSERVICE = "com.shunyu.propninja.PNService.queue";
+
 NSString *KEY_CONFIG_HOTKEY = @"CONFIG_HOTKEY";
 NSUInteger VALUE_CONFIG_HOTKEY_DEFAULT_MODIFIER_FLAGS = NSAlternateKeyMask | NSCommandKeyMask;
 unsigned char VALUE_CONFIG_HOTKEY_DEFAULT_KEY_CODE = 47;

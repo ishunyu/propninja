@@ -11,6 +11,7 @@
 #import "PNPropertyFileInfoConfig.h"
 
 @interface PNServer : NSObject
+- (void)start;
 - (void)startInBackgroundWithCallback: (void (^)(BOOL)) callback;
 - (BOOL)index:(PNPropertyFileInfoConfig *)pFileInfoConfig;
 - (void)stop;
