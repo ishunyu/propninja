@@ -24,6 +24,8 @@ extern NSString *FILE_TYPE_PYTHON;
 extern NSString *FILE_TYPE_LOCK;
 extern NSString *FILE_TYPE_JSON;
 
+extern const char *NAME_QUEUE_PNSERVICE;
+
 extern NSString *KEY_CONFIG_HOTKEY;
 extern NSUInteger VALUE_CONFIG_HOTKEY_DEFAULT_MODIFIER_FLAGS;
 extern unsigned char VALUE_CONFIG_HOTKEY_DEFAULT_KEY_CODE;

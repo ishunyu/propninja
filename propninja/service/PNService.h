@@ -14,9 +14,8 @@
 @interface PNService : NSObject
 @property (strong, nonatomic, readonly) PNPropertyFileInfoConfig *pFilesConfig;
 
-- (NSArray *)searchProperties:(NSString *)search;
+- (void)getProperties:(NSArray *)properties callback:(void(^)(NSArray *))callback;
+- (void)searchProperties:(NSString *)search callback:(void(^)(NSArray *))callback;
 - (void)setProperty:(PNProperty *)property;
-
-- (NSArray *)getProperties:(NSArray *)properties;
-- (void) stop;
+- (void)stop;
 @end

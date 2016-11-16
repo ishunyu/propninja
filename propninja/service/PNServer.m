@@ -22,6 +22,11 @@
 
 @implementation PNServer
 
+- (void)start
+{
+    [self launchNSTask];
+}
+
 - (void)startInBackgroundWithCallback:(void (^)(BOOL))callback
 {
     [self performSelectorInBackground:@selector(doStartInBackgroundWithCallback:) withObject:callback];
