@@ -157,7 +157,7 @@
 
 -(void)controlTextDidEndEditing:(NSNotification *)obj
 {
-    DDLogInfo(@"controlTextDidEndEditing");
+    DDLogVerbose(@"controlTextDidEndEditing");
     
     PNPropertiesTableCellView *cell;
     cell = [self cellFromNotification:obj];

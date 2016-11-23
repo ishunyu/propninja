@@ -7,11 +7,13 @@
 //
 
 #import "PNLoggerUtils.h"
+#import "NSString+Utilities.h"
 
 #import "PNPropertiesTableCellView.h"
 @interface PNPropertiesTableCellView ()
 @property (nonatomic, strong) id<PNPropertiesTableCellViewDelegate> delegate;
 @property (nonatomic) NSInteger baseHeight;
+@property (nonatomic) BOOL isSelected;
 @end
 
 @implementation PNPropertiesTableCellView
@@ -34,26 +36,40 @@
 
 - (void)deselect
 {
-    self.bounds = CGRectMake(self.bounds.origin.x,
-                             self.bounds.origin.y,
-                             self.bounds.size.width,
-                             self.baseHeight);
+    DDLogVerbose(@"deselect bounds.height: %f", self.bounds.size.height);
+    self.isSelected = NO;
     [self.delegate cellHeightDidChange:self];
 }
 
 - (void)selected
 {
-    self.bounds = CGRectMake(self.bounds.origin.x,
-                             self.bounds.origin.y,
-                             self.bounds.size.width,
-                             self.baseHeight * 3);
+    DDLogVerbose(@"selected bounds.height: %f", self.bounds.size.height);
+    self.isSelected = YES;
     [self.delegate cellHeightDidChange:self];
+}
+
+- (NSInteger)height;
+{
+    return self.baseHeight * (self.isSelected ? [self linesForEditing] : 1);
+}
+
+- (NSUInteger)linesForEditing
+{
+    NSUInteger numberOfLines = [self.valueField.stringValue numberOfLines];
+    if (numberOfLines <= 1) {
+        return 1;
+    }
+    
+    if (numberOfLines <= 4) {
+        return 3;
+    }
+    
+    return 4;
 }
 
 #pragma mark PNTextFieldDelegate
 - (void)becameFirstResponder:(PNTextField *)textField
 {
-    DDLogInfo(@"textField becameFirstResponder");
     [self selected];
 }
 @end

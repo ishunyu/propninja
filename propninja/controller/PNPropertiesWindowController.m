@@ -55,7 +55,7 @@
 
 - (void)windowDidLoad
 {
-    [self updateSearchResults];
+    [self updateSearchResults:nil];
 }
 
 #pragma mark - NSWindowDelegate
@@ -71,27 +71,31 @@
 }
 
 #pragma mark Search
-- (void)updateSearchResults
+- (void)updateSearchResults:(void (^)())callback
 {
     NSString *searchString = [self.searchBox stringValue];
     DDLogDebug(@"updateSearchResults searchString:\"%@\"", searchString);
     
-    void(^callback)(NSArray*) = ^(NSArray* data)
+    void(^updateViewsCallback)(NSArray*) = ^(NSArray* data)
     {
         if (data) {
             self.data = data;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self updateViews];
+                if (callback)
+                {
+                    callback();
+                }
             });
         }
     };
     
     if([searchString isEmpty])
     {
-        [self.service getProperties:[self.usage getTopVisitedProperties:10] callback:callback];
+        [self.service getProperties:[self.usage getTopVisitedProperties:10] callback:updateViewsCallback];
     }
     else {
-        [self.service searchProperties:searchString callback:callback];
+        [self.service searchProperties:searchString callback:updateViewsCallback];
     }
 }
 
@@ -201,7 +205,7 @@
 {
     if (notification.object == self.searchBox)
     {
-        [self updateSearchResults];
+        [self updateSearchResults:nil];
         return;
     }
 }
@@ -240,11 +244,12 @@
         
         [self.service setProperty:newProp];
         [self.usage edited:newProp];
-        [self updateSearchResults];
-        if(![self highlightCellWithProperty:newProp])
-        {
-            [self.window makeFirstResponder:self.searchBox];
-        }
+        [self updateSearchResults:^(){
+            if(![self highlightCellWithProperty:newProp])
+            {
+                [self.window makeFirstResponder:self.searchBox];
+            }
+        }];
     }
 }
 
@@ -283,10 +288,9 @@
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
 {
     PNPropertiesTableCellView *cell = self.views[row];
-    return cell.bounds.size.height;
+    NSInteger height = [cell height];
+    return height;
 }
-
-
 
 #pragma mark NSTableViewDataSource
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView

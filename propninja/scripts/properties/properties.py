@@ -27,7 +27,7 @@ class Properties(object):
     def __getitem__(self, key):
         item = self._get(key)
         if item:
-            return item.value()
+            return item.real_value()
 
     def __setitem__(self, key, value):
         item = self._get(key)

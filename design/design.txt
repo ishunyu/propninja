@@ -17,11 +17,7 @@ Technical Design
 		Mac OS Cocoa Application
 		Extreme number of characters, what to do?
 			Give a bigger text box, instead of text line, to type in
-<<<<<<< 7cadb49e6e33143635bf4930b84ba978a92f4107
 			Use alt+enter for newline
-=======
-			Use cmd+enter for newline
->>>>>>> Temp
 			Allow scrolling if exceeding max boundary
 			Scrolling result lines behind the edit box should not affect the edit box
 	Back-End
@@ -51,6 +47,9 @@ Technical Design
 				System
 					Indexing
 		Python Indexing Service
+			Need to keep a source of truth for the properties
+			Guard against illegal value inputs
+				- values that effectively end with '\'
 		Python Beautiful Properties Library
 			Read properties
 				Retain formatting while reading

@@ -22,6 +22,8 @@
 @property (weak) IBOutlet PNTextField *valueField;
 
 - (void)populate:(id)delegate index:(NSUInteger)index property:(PNProperty *)property;
+
+- (NSInteger)height;
 - (void)deselect;
 @end
 

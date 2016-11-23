@@ -12,6 +12,7 @@
 - (NSString *)strip;
 - (BOOL)isEmpty;
 - (unichar)lastCharacter;
+- (NSUInteger)numberOfLines;
 
 + (BOOL)isNullOrEmpty:(NSString *)string;
 @end

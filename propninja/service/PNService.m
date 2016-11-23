@@ -45,7 +45,7 @@
 
 - (void)_start
 {
-    [self _dispatch_async:
+    [self dispatch_async:
      ^{
          [self.pServer start];
          DDLogInfo(@"started");
@@ -54,7 +54,7 @@
 
 - (void)_index
 {
-    [self _dispatch_async:
+    [self dispatch_async:
      ^{
          [self.pServer index:self.pFilesConfig];
          DDLogInfo(@"properties indexed");
@@ -63,7 +63,7 @@
 
 - (void)getProperties:(NSArray *)properties callback:(void (^)(NSArray *))callback
 {
-    [self _dispatch_async:
+    [self dispatch_async:
      ^{
          NSDictionary *data = [self.pServer sendRequest:[PNServiceUtils dictForGet:properties]];
          NSArray *result = [PNServiceUtils constructPropertiesFromSearchResult:data[@"value"]
@@ -74,7 +74,7 @@
 
 - (void)searchProperties:(NSString *)search callback:(void (^)(NSArray *))callback
 {
-    [self _dispatch_async:
+    [self dispatch_async:
      ^{
          NSDictionary *data = [self.pServer sendRequest:[PNServiceUtils dictForSearch:search]];
          NSArray *result = [PNServiceUtils constructPropertiesFromSearchResult:data[@"value"]
@@ -85,7 +85,7 @@
 
 - (void)setProperty:(PNProperty *)property
 {
-    [self _dispatch_async:
+    [self dispatch_async:
      ^{
          [self.pServer sendRequest:[PNServiceUtils dictForSet:property]];
      }];
@@ -93,14 +93,14 @@
 
 - (void) stop
 {
-    [self _dispatch_async:
+    [self dispatch_async:
      ^{
          [self.pServer stop];
          DDLogInfo(@"stopped");
      }];
 }
 
-- (void)_dispatch_async:(void(^)())block
+- (void)dispatch_async:(void(^)())block
 {
     dispatch_async(self.queue, block);
 }

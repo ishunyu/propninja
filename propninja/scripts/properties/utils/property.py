@@ -52,6 +52,9 @@ class Property(PropertiesItem):
                 return self._elements[0][1]
         return self._nelement
 
+    def real_value(self):
+        return "\n".join(["".join(x) for x in self._elements])
+
     def set(self, value):
         self._elements = [["", value]]
         self._nelement = None

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
@@ -24,7 +25,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lp1-5h-HRV">
-                    <rect key="frame" x="397" y="28" width="84" height="19"/>
+                    <rect key="frame" x="397" y="30" width="84" height="17"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="QNm-fc-hxB"/>
                     </constraints>
@@ -35,10 +36,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="muA-LR-Qvx" customClass="PNTextField">
-                    <rect key="frame" x="10" y="3" width="471" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="a3R-Fd-Jie"/>
-                    </constraints>
+                    <rect key="frame" x="10" y="2" width="471" height="21"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" title="value" id="uJt-1p-qcc">
                         <font key="font" metaFont="system" size="17"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -51,9 +49,9 @@
                 <constraint firstItem="muA-LR-Qvx" firstAttribute="trailing" secondItem="Lp1-5h-HRV" secondAttribute="trailing" id="AWt-Px-2Hb"/>
                 <constraint firstItem="muA-LR-Qvx" firstAttribute="top" secondItem="qkC-hA-EVf" secondAttribute="bottom" constant="4" id="Bua-W9-1iM"/>
                 <constraint firstItem="qkC-hA-EVf" firstAttribute="top" secondItem="AbK-eY-xsd" secondAttribute="top" id="LhB-wQ-k4Y"/>
+                <constraint firstItem="muA-LR-Qvx" firstAttribute="bottom" secondItem="AbK-eY-xsd" secondAttribute="bottom" constant="-2" id="bcY-7c-jYM"/>
                 <constraint firstItem="qkC-hA-EVf" firstAttribute="leading" secondItem="AbK-eY-xsd" secondAttribute="leading" constant="3" id="lwe-XD-Lb6"/>
                 <constraint firstAttribute="trailing" secondItem="Lp1-5h-HRV" secondAttribute="trailing" constant="3" id="pSC-bj-2KP"/>
-                <constraint firstItem="muA-LR-Qvx" firstAttribute="top" secondItem="Lp1-5h-HRV" secondAttribute="bottom" constant="5" id="thC-4o-VeQ"/>
                 <constraint firstItem="muA-LR-Qvx" firstAttribute="leading" secondItem="AbK-eY-xsd" secondAttribute="leading" constant="12" id="vYp-9Q-s1Q"/>
                 <constraint firstItem="Lp1-5h-HRV" firstAttribute="top" secondItem="AbK-eY-xsd" secondAttribute="top" constant="-1" id="ym7-8L-OpB"/>
             </constraints>
