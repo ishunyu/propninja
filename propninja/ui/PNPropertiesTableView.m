@@ -85,7 +85,7 @@
     
     if (currentIndex == 0)
     {
-        [self.delegate control:self textView:nil doCommandBySelector:@selector(cancelOperation:)];
+        [self sendCancelOperationCommand];
     }
     else if(currentIndex < self.numberOfRows)
     {
@@ -105,7 +105,7 @@
 
     if (currentIndex == [self lastRow])
     {
-        [self.delegate control:self textView:nil doCommandBySelector:@selector(cancelOperation:)];
+        [self sendCancelOperationCommand];
     }
     else if (currentIndex < self.numberOfRows)
     {
@@ -162,7 +162,7 @@
     PNPropertiesTableCellView *cell;
     cell = [self cellFromNotification:obj];
     
-    [(id<PNPropertiesTableViewDelegate>)self.delegate cellDidChange:cell];
+    [(id<PNPropertiesTableViewDelegate>)self.delegate propertyDidFinishEditing:cell];
 }
 
 #pragma mark PNPropertiesTableCellViewDelegate
@@ -191,18 +191,23 @@
     
     if (theEvent.keyCode == 51 && modifierFlags == 0) // delete
     {
-        [self.delegate control:self textView:nil doCommandBySelector:@selector(deleteBackward:)];
+        [(id<PNPropertiesTableViewDelegate>)self.delegate deleteBackwardCommand];
         return;
     }
     
     if (theEvent.keyCode == 53 && modifierFlags == 0) // esc
     {
-        [self.delegate control:self textView:nil doCommandBySelector:@selector(cancelOperation:)];
+        [self sendCancelOperationCommand];
         return;
     }
     
-    DDLogInfo(@"keyDown keyCode: %d modiferFlags: %lu", theEvent.keyCode, modifierFlags);
+    DDLogVerbose(@"keyDown keyCode: %d modiferFlags: %lu", theEvent.keyCode, modifierFlags);
     [super keyDown:theEvent];
+}
+
+- (void)sendCancelOperationCommand
+{
+    [(id<PNPropertiesTableViewDelegate>)self.delegate cancelOperationCommand:self];
 }
 
 @end

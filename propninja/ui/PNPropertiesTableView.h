@@ -25,6 +25,9 @@
 @protocol PNPropertiesTableViewDelegate <NSObject>
 
 @required
-- (void)cellDidChange:(PNPropertiesTableCellView *)cell;
+- (void)propertyDidFinishEditing:(PNPropertiesTableCellView *)cell;
 
+@optional
+- (BOOL)deleteBackwardCommand;
+- (BOOL)cancelOperationCommand:(NSControl *)control;
 @end

@@ -230,9 +230,9 @@
 }
 
 #pragma mark PNPropertiesTableViewDelegate
-- (void)cellDidChange:(PNPropertiesTableCellView *)cell
+- (void)propertyDidFinishEditing:(PNPropertiesTableCellView *)cell
 {
-    DDLogVerbose(@"cellDidChange index:%ld", cell.index);
+    DDLogVerbose(@"propertyDidFinishEditing index:%ld", cell.index);
     
     PNProperty *oldProp = (PNProperty *)self.data[cell.index];
     NSString *oldValue = oldProp.value;
@@ -280,16 +280,16 @@
     return self.views[row];
 }
 
-- (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row
-{
-    return [[PNPropertiesTableRowView alloc] init];
-}
-
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
 {
     PNPropertiesTableCellView *cell = self.views[row];
     NSInteger height = [cell height];
     return height;
+}
+
+- (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row
+{
+    return [[PNPropertiesTableRowView alloc] init];
 }
 
 #pragma mark NSTableViewDataSource

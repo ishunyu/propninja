@@ -13,7 +13,7 @@
 @implementation PNStreamUtils
 
 #pragma mark NSFileHandle
-+ (NSData *)sendData:(nullable NSData *)data writeFileHandle:(nullable NSFileHandle *)writeFileHandle readFileHandle:(NSFileHandle *)readFileHandle
++ (NSData *)sendData:(NSData *)data writeFileHandle:(NSFileHandle *)writeFileHandle readFileHandle:(NSFileHandle *)readFileHandle
 {
     if (data != nil) {
         [writeFileHandle writeData:[PNStreamUtils appendNewline:data]];

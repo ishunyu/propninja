@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface PNStreamUtils : NSObject
-+ (NSData *)sendData:(nullable NSData *)data writeFileHandle:(nullable NSFileHandle *) writeFileHandle readFileHandle: (NSFileHandle *)readFileHandle;
++ (nonnull NSData *)sendData:(nullable NSData *)data writeFileHandle:(nullable NSFileHandle *) writeFileHandle readFileHandle: (nonnull NSFileHandle *)readFileHandle;
 @end
