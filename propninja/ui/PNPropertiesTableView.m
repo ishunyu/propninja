@@ -31,6 +31,16 @@
     return indexSet.firstIndex;
 }
 
+- (void)openTextEditor
+{
+    NSUInteger index = [self currentIndex];
+    if (index < 0) {
+        return;
+    }
+
+    [(id<PNPropertiesTableViewDelegate>)self.delegate openTextEditor:index];
+}
+
 #pragma mark Data
 - (PNPropertiesTableCellView *)cellForRow:(NSInteger)row
 {
@@ -188,7 +198,7 @@
         return;
     }
     
-    if (theEvent.keyCode == 125 && modifierFlags ==0) // down
+    if (theEvent.keyCode == 125 && modifierFlags == 0) // down
     {
         [self moveDown];
         return;
@@ -203,6 +213,11 @@
     if (theEvent.keyCode == 53 && modifierFlags == 0) // esc
     {
         [self.delegate control:self textView:nil doCommandBySelector:@selector(cancelOperation:)];
+        return;
+    }
+    
+    if (theEvent.keyCode == 36 && modifierFlags == NSCommandKeyMask) {
+        [self openTextEditor];
         return;
     }
     

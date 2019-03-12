@@ -32,12 +32,11 @@
 
 - (NSStatusItem *)initializeStatusItem
 {
-    NSString *pathForIcon = [[NSBundle mainBundle] pathForResource:@"images/propninja-16x16" ofType:@"png"];
-    
     NSStatusItem *item = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
     
     item.highlightMode = YES;
-    item.image = [[NSImage alloc] initWithContentsOfFile:pathForIcon];
+    item.image = [NSImage imageNamed:@"MenuIcon"];
+    item.image.template = true;
     item.action = @selector(show:);
     item.target = self;
 

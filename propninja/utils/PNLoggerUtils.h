@@ -12,8 +12,8 @@
 #import <CocoaLumberjack/DDTTYLogger.h>
 #import <CocoaLumberjack/DDFileLogger.h>
 
-static const int ddLogLevel = LOG_LEVEL_INFO;
-//static const int ddLogLevel = LOG_LEVEL_DEBUG;
+//static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_DEBUG;
 //static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface PNLoggerUtils : NSObject

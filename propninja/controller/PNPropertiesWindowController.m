@@ -269,6 +269,16 @@
     return NO;
 }
 
+- (void)openTextEditor:(NSUInteger)row {
+    PNProperty *p = self.data[row];
+    DDLogInfo(@"Opening file: %@", p.pFileInfo.absolutePath);
+    
+    NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+    if([workspace openFile:p.pFileInfo.absolutePath]) {
+        DDLogInfo(@"Text editor failed to launch");
+    }
+}
+
 #pragma mark NSTableViewDelegate
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {

@@ -25,5 +25,5 @@
 
 @required
 - (void)cellDidChange:(PNPropertiesTableCellView *)cell;
-
+- (void)openTextEditor: (NSUInteger)row;
 @end
